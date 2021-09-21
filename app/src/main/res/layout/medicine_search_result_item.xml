@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:padding="15dp"
+    android:background="?attr/selectableItemBackground">
+
+    <TextView
+        android:id="@+id/medicineNameSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_bold"
+        android:textSize="15dp"
+        android:lineHeight="18dp"
+        android:text="Medicine Name"
+        android:textColor="@color/grey_medium"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        />
+
+    <TextView
+        android:id="@+id/medicineDosageSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato"
+        android:textSize="10dp"
+        android:lineHeight="12dp"
+        android:text="Dosage Type"
+        android:textColor="@color/black_translucent"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/medicineNameSearch"
+        android:paddingTop="5dp"
+        />
+
+    <TextView
+        android:id="@+id/medicineIngredientsSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato"
+        android:textSize="10dp"
+        android:lineHeight="12dp"
+        android:text="Medicine Ingredients"
+        android:textColor="@color/black_very_translucent"
+        android:layout_toRightOf="@id/medicineDosageSearch"
+        android:layout_below="@id/medicineNameSearch"
+        android:paddingTop="5dp"
+        android:paddingLeft="5dp"
+        />
+
+    <TextView
+        android:id="@+id/medicineManufacturerSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato"
+        android:textSize="9dp"
+        android:lineHeight="11dp"
+        android:text="Medicine Manufacturer"
+        android:textColor="@color/grey_medium_translucent"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/medicineDosageSearch"
+        android:paddingTop="5dp"
+        />
+
+</RelativeLayout>
