@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "614241690256",
+    "project_id": "authentation-healthhub",
+    "storage_bucket": "authentation-healthhub.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:614241690256:android:cad29b8aa8d78fe0f1ae15",
+        "android_client_info": {
+          "package_name": "com.example.loginui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "614241690256-esrs1plbecp7sm3l6qg9f5kptkt968bl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgZR7mlrqt-9qHWkgXTwVnMzpoIN517Uo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "614241690256-esrs1plbecp7sm3l6qg9f5kptkt968bl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
