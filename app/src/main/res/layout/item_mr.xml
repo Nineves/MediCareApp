@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <soup.neumorphism.NeumorphButton
+            android:id="@+id/TitleButton"
+            style="@style/Widget.Neumorph.Button"
+            android:layout_width="match_parent"
+            android:layout_height="95dp"
+            app:neumorph_backgroundColor="@color/colorPrimary">
+
+        </soup.neumorphism.NeumorphButton>
+
+        <TextView
+            android:id="@+id/medicineName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/button3"
+            android:layout_alignTop="@id/button3"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="34dp"
+            android:layout_marginTop="18dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="Ichthammol Ointment"
+            android:textColor="@color/fontColor"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/timeandFrequency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/button3"
+            android:layout_alignTop="@id/button3"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="34dp"
+            android:layout_marginTop="45dp"
+            android:fontFamily="@font/lato_medium"
+            android:text="today 20:00, 4 times/day"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/freeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/button3"
+            android:layout_alignTop="@id/button3"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="34dp"
+            android:layout_marginTop="58dp"
+            android:fontFamily="@font/lato_medium"
+            android:text="External use"
+            android:textColor="@color/fontColor_lighter"
+            android:textSize="11dp" />
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+</RelativeLayout>
