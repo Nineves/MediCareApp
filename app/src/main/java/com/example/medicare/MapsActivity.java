@@ -6,8 +6,13 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.Looper;
@@ -23,24 +28,36 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.medicare.databinding.ActivityMapsBinding;
+import com.google.maps.android.data.kml.KmlLayer;
+import com.google.maps.android.data.kml.KmlPlacemark;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
+import java.util.List;
+
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener {
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
     ImageButton trigger;
     private static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
+    private double latitude;
+    private double longtitude;
+    LocationManager locationManager;
+    KmlLayer layer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
-         setContentView(binding.getRoot());
-
+        setContentView(binding.getRoot());
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -67,7 +84,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                     );
                 }else{
-                    getCurrentLocation();
+                    Criteria criteria = new Criteria();
+                    Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
+                    if (location != null)
+                    {
+                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                                new LatLng(1.3483, 103.6831), 13));
+
+                        CameraPosition cameraPosition = new CameraPosition.Builder()
+                                .target(new LatLng(1.3483, 103.6831))      // Sets the center of the map to location user
+                                .zoom(17)                   // Sets the zoom
+                                .bearing(90)                // Sets the orientation of the camera to east
+                                .tilt(20)                   // Sets the tilt of the camera to 30 degrees
+                                .build();                   // Creates a CameraPosition from the builder
+                        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                    }
+
+
                 }
             }
         });
@@ -76,10 +109,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        // Add a marker in Sydney and move the camera
         LatLng ntu = new LatLng(1.3483, 103.6831);
         mMap.addMarker(new MarkerOptions().position(ntu).title("NTU"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ntu));
+
+        try {
+            layer = new KmlLayer(mMap, R.raw.chas_clinics_kml, getApplicationContext());
+            layer.addLayerToMap();
+        } catch (XmlPullParserException e) {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        
+
+
+
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -113,6 +159,47 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }
         }, Looper.getMainLooper());
 
+    }
+
+
+
+
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
+
+        latitude = location.getLatitude();
+        longtitude = location.getLongitude();
+
+        locationManager.removeUpdates(this);
+    }
+
+    @Override
+    public void onLocationChanged(@NonNull List<Location> locations) {
+
+    }
+
+    @Override
+    public void onFlushComplete(int requestCode) {
+
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(@NonNull String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(@NonNull String provider) {
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
 }
