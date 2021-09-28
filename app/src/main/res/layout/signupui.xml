@@ -11,18 +11,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="84dp"
         android:layout_marginEnd="40dp"
-        android:shadowColor="@color/black"
-        android:shadowDx="5"
-        android:shadowDy="10"
-        android:shadowRadius="10"
         android:text="    Only a few steps!"
         android:textColor="#000000"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,14 +26,14 @@
         android:id="@+id/username_input"
         android:layout_width="250dp"
         android:layout_height="55dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="44dp"
         android:background="@drawable/round_boarder"
         android:ems="10"
         android:hint="Username"
         android:inputType="text"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/OnlyaFewSteps" />
 
@@ -45,64 +41,45 @@
         android:id="@+id/email_input"
         android:layout_width="250dp"
         android:layout_height="55dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/round_boarder"
         android:ems="10"
         android:hint="Email"
         android:inputType="text"
         android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_input" />
-
-    <EditText
-        android:id="@+id/vcode_input"
-        android:layout_width="250dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="80dp"
-        android:background="@drawable/round_boarder"
-        android:ems="10"
-        android:hint="Verification Code"
-        android:inputType="text"
-        android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_input" />
+        app:layout_constraintEnd_toEndOf="@id/username_input"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/username_input"
+        app:layout_constraintTop_toBottomOf="@id/username_input" />
 
     <EditText
         android:id="@+id/password_input"
         android:layout_width="250dp"
         android:layout_height="55dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/round_boarder"
         android:ems="10"
         android:hint="Password"
-        android:inputType="text"
+        android:inputType="text|textPassword"
         android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vcode_input" />
+        app:layout_constraintEnd_toEndOf="@id/email_input"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@id/email_input"
+        app:layout_constraintTop_toBottomOf="@+id/email_input" />
 
     <EditText
         android:id="@+id/confirmPassword_input"
         android:layout_width="255dp"
         android:layout_height="55dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/round_boarder"
         android:ems="10"
         android:hint="Confirm Password"
-        android:inputType="text"
+        android:inputType="text|textPassword"
         android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/password_input"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/password_input"
         app:layout_constraintTop_toBottomOf="@+id/password_input" />
 
     <Button
@@ -110,15 +87,12 @@
         android:layout_width="170dp"
         android:layout_height="55dp"
         android:layout_marginStart="140dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="140dp"
         android:background="@drawable/round"
-        android:shadowColor="@color/black"
-        android:shadowDx="5"
-        android:shadowDy="5"
-        android:shadowRadius="5"
         android:text="Register"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmPassword_input" />
 
@@ -126,9 +100,9 @@
         android:id="@+id/imageView2"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toStartOf="@+id/register_button"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.062"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmPassword_input"
         app:srcCompat="@drawable/leftdown" />
@@ -145,5 +119,15 @@
         app:layout_constraintBottom_toTopOf="@+id/OnlyaFewSteps"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/backbtn2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

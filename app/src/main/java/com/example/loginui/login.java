@@ -9,7 +9,9 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,8 +21,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class login extends AppCompatActivity {
     EditText email, password;
+    TextView forgetbtn;
     Button loginbtn;
     ProgressBar progressBar;
+    ImageView backbtn;
     FirebaseAuth fAuth;
 
     @Override
@@ -31,6 +35,8 @@ public class login extends AppCompatActivity {
         email = findViewById(R.id.email_input1);
         password = findViewById(R.id.password_input1);
         loginbtn = findViewById(R.id.login_button);
+        forgetbtn = findViewById(R.id.forgetlink);
+        backbtn = findViewById(R.id.backbtn);
         progressBar = findViewById(R.id.progressBar);
 
         fAuth = FirebaseAuth.getInstance();
@@ -47,7 +53,7 @@ public class login extends AppCompatActivity {
                 }
 
                 if(TextUtils.isEmpty(password_input)){
-                    email.setError("Password is required!");
+                    password.setError("Password is required!");
                     return;
                 }
 
@@ -69,9 +75,24 @@ public class login extends AppCompatActivity {
                         }
                         else{
                             Toast.makeText(login.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.GONE);
                         }
                     }
                 });
+            }
+        });
+
+        forgetbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), resetPassword1.class));
+            }
+        });
+
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), launch.class));
             }
         });
     }

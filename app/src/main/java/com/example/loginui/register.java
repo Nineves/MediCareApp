@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ public class register extends AppCompatActivity {
 
     EditText username, email, password, passwordConfirm;
     Button registerbtn;
+    ImageView backbtn;
     FirebaseAuth fAuth;
     ProgressBar progressBar;
 
@@ -34,6 +36,7 @@ public class register extends AppCompatActivity {
         password = findViewById(R.id.password_input);
         passwordConfirm = findViewById(R.id.confirmPassword_input);
         registerbtn = findViewById(R.id.register_button);
+        backbtn = findViewById(R.id.backbtn2);
         progressBar = findViewById(R.id.progressBar1);
 
         fAuth = FirebaseAuth.getInstance();
@@ -63,7 +66,7 @@ public class register extends AppCompatActivity {
                 }
 
                 if(TextUtils.isEmpty(password_input)){
-                    email.setError("Password is required!");
+                    password.setError("Password is required!");
                     return;
                 }
 
@@ -94,9 +97,17 @@ public class register extends AppCompatActivity {
                         }
                         else{
                             Toast.makeText(register.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.GONE);
                         }
                     }
                 });
+
+            }
+        });
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), launch.class));
             }
         });
 

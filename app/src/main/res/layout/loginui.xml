@@ -12,10 +12,6 @@
         android:layout_marginStart="95dp"
         android:layout_marginTop="180dp"
         android:layout_marginEnd="95dp"
-        android:shadowColor="@color/black"
-        android:shadowDx="5"
-        android:shadowDy="10"
-        android:shadowRadius="10"
         android:text="Login with Email"
         android:textColor="#000000"
         android:textSize="36sp"
@@ -50,7 +46,7 @@
         android:background="@drawable/round_boarder"
         android:ems="10"
         android:hint="Password"
-        android:inputType="text"
+        android:inputType="text|textPassword"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,11 +60,8 @@
         android:layout_marginTop="55dp"
         android:layout_marginEnd="130dp"
         android:background="@drawable/round"
-        android:shadowColor="@color/black"
-        android:shadowDx="5"
-        android:shadowDy="5"
-        android:shadowRadius="5"
         android:text="Login"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_input1" />
@@ -86,16 +79,16 @@
         app:srcCompat="@drawable/medicine" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/forgetlink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="78dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="197dp"
+        android:layout_marginEnd="100dp"
         android:text="FORGET PASSWORD?"
         android:textColor="#9C27B0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/password_input1"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@id/password_input1"
         app:layout_constraintTop_toBottomOf="@+id/password_input1" />
 
     <ProgressBar
@@ -110,5 +103,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/backbtn"
+        android:layout_width="71dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
