@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp"
+    android:background="?attr/selectableItemBackground"
+    >
+
+    <TextView
+        android:id="@+id/clinicNameSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:fontFamily="@font/lato_bold"
+        android:lineHeight="18dp"
+        android:text="Clinic Name"
+        android:textColor="@color/grey_medium"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/clinicRatingSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato"
+        android:textSize="10dp"
+        android:lineHeight="12dp"
+        android:text="Clinic Rating"
+        android:textColor="@color/black_translucent"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/clinicNameSearch"
+        android:paddingTop="5dp"
+        />
+
+    <TextView
+        android:id="@+id/clinicDistanceSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato"
+        android:textSize="10dp"
+        android:lineHeight="12dp"
+        android:text="Clinic Distance"
+        android:textColor="@color/blue_translucent"
+        android:layout_toRightOf="@id/clinicRatingSearch"
+        android:layout_below="@id/clinicNameSearch"
+        android:paddingTop="5dp"
+        android:paddingLeft="5dp"
+        />
+
+    <TextView
+        android:id="@+id/clinicAddressSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/clinicRatingSearch"
+        android:layout_alignParentLeft="true"
+        android:fontFamily="@font/lato"
+        android:lineHeight="11dp"
+        android:paddingTop="5dp"
+        android:text="Clinic Address"
+        android:textColor="@color/grey_medium"
+        android:textSize="9dp" />
+
+</RelativeLayout>
