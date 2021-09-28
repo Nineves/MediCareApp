@@ -118,13 +118,15 @@
                         app:neumorph_shapeType="pressed">
 
                         <EditText
+                            android:inputType="text"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginStart="20dp"
                             android:layout_marginEnd="10dp"
                             android:background="@null"
                             android:fontFamily="@font/lato_medium"
-                            android:maxLength="2"></EditText>
+                            android:maxLength="2"
+                            android:maxLines="1"></EditText>
 
                     </soup.neumorphism.NeumorphCardView>
 
@@ -138,13 +140,15 @@
                         app:neumorph_shapeType="pressed">
 
                         <EditText
+                            android:inputType="text"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginStart="20dp"
                             android:layout_marginEnd="10dp"
                             android:background="@null"
                             android:fontFamily="@font/lato_medium"
-                            android:maxLength="2"></EditText>
+                            android:maxLength="2"
+                            android:maxLines="1"></EditText>
 
                     </soup.neumorphism.NeumorphCardView>
 
@@ -162,6 +166,7 @@
                 android:layout_centerInParent="true"
                 app:neumorph_shapeType="pressed">
                 <EditText
+                    android:inputType="text"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:layout_marginStart="12dp"
@@ -170,7 +175,8 @@
                     android:hint="Medicine name"
                     android:fontFamily="@font/lato_medium"
                     android:background="@null"
-                    android:maxLength="50"></EditText>
+                    android:maxLength="50"
+                    android:maxLines="1"></EditText>
             </soup.neumorphism.NeumorphCardView>
 
             <soup.neumorphism.NeumorphCardView
@@ -184,6 +190,7 @@
                 android:layout_centerInParent="true"
                 app:neumorph_shapeType="pressed">
                 <EditText
+                    android:inputType="text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="12dp"
@@ -191,6 +198,7 @@
                     android:hint="DD/MM/YY, time"
                     android:fontFamily="@font/lato_medium"
                     android:background="@null"
+                    android:maxLines="1"
                     ></EditText>
             </soup.neumorphism.NeumorphCardView>
 
@@ -203,6 +211,7 @@
                 android:layout_marginTop="190dp"
                 app:neumorph_shapeType="pressed">
                 <EditText
+                    android:inputType="text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="30dp"
@@ -210,7 +219,8 @@
                     android:hint="no."
                     android:fontFamily="@font/lato_medium"
                     android:background="@null"
-                    android:maxLength="2"></EditText>
+                    android:maxLength="2"
+                    android:maxLines="1"></EditText>
             </soup.neumorphism.NeumorphCardView>
 
             <TextView
@@ -232,13 +242,15 @@
                 android:layout_marginTop="410dp"
                 app:neumorph_shapeType="pressed">
                 <EditText
+                    android:inputType="text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="10dp"
                     android:hint="pills/ml/mg..."
                     android:fontFamily="@font/lato_medium"
-                    android:background="@null"></EditText>
+                    android:background="@null"
+                    android:maxLines="1"></EditText>
             </soup.neumorphism.NeumorphCardView>
 
             <TextView
@@ -262,12 +274,14 @@
                 app:neumorph_shapeType="pressed">
 
                 <EditText
+                    android:inputType="text"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="100dp"
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
                     android:background="@null"
+                    android:gravity="top"
                     android:fontFamily="@font/lato_medium"
                     android:hint="Free text here..."></EditText>
             </soup.neumorphism.NeumorphCardView>
