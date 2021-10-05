@@ -11,4 +11,13 @@
     <color name="fontColor">#686868</color>
     <color name="gray">#EEF0F5</color>
     <color name="purple">#3E1FF6</color>
+    <!-- Sitian's colors -->
+    <color name="grey_light">#E5E5E5</color>
+    <color name="grey_medium">#686868</color>
+    <color name="grey_medium_translucent">#D9686868</color>
+    <color name="black_translucent">#99000000</color>
+    <color name="black_very_translucent">#85000000</color>
+    <color name="blue_translucent">#99334669</color>
+    <color name="transparent">#00FFFFFF</color>
+    <!---->
 </resources>
