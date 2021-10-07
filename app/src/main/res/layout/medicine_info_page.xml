@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/backgrd_info"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/info_bgrd" />
+
+    <TextView
+        android:id="@+id/title_medicine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="Medicine Information"
+        android:textColor="@color/fontColor"
+        android:layout_marginRight="50dp"
+        android:textSize="30sp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/manufacturer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_medicine"
+        android:layout_alignLeft="@id/title_medicine"
+        android:text="Manufacturer"
+        android:fontFamily="@font/lato_bold"
+        android:layout_marginTop="80dp"
+        android:textSize="17sp"/>
+
+    <TextView
+        android:id="@+id/manufacturer_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/manufacturer"
+        android:layout_alignLeft="@id/title_medicine"
+        android:text="Glenmark Pharmaceuticals Ltd"
+        android:fontFamily="@font/lato_medium"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="15dp"
+        android:textSize="13sp"/>
+
+    <TextView
+        android:id="@+id/ingredients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/manufacturer_content"
+        android:layout_alignLeft="@id/title_medicine"
+        android:text="Main active ingredients"
+        android:fontFamily="@font/lato_bold"
+        android:layout_marginTop="25dp"
+        android:textSize="17sp"/>
+
+    <TextView
+        android:id="@+id/ingredients_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ingredients"
+        android:layout_alignLeft="@id/title_medicine"
+        android:layout_marginRight="50dp"
+        android:text="Phenylephrine, Chlorpheniramine Maleate, Dextromethorphan Hydrobromide"
+        android:fontFamily="@font/lato_medium"
+        android:layout_marginTop="15dp"
+        android:textSize="13sp"/>
+
+    <TextView
+        android:id="@+id/dosage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ingredients_content"
+        android:layout_alignLeft="@id/title_medicine"
+        android:text="Dosage Form"
+        android:fontFamily="@font/lato_bold"
+        android:layout_marginTop="25dp"
+        android:textSize="17sp"/>
+
+    <TextView
+        android:id="@+id/dosage_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dosage"
+        android:layout_alignLeft="@id/title_medicine"
+        android:layout_marginRight="50dp"
+        android:text="bottle of 100ml syrup"
+        android:fontFamily="@font/lato_medium"
+        android:layout_marginTop="15dp"
+        android:textSize="13sp"/>
+
+
+</RelativeLayout>
+

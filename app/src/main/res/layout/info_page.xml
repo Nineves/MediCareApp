@@ -46,17 +46,22 @@
         android:layout_below="@id/title_info"
         />
 
-    <TextView
+    <Button
         android:id="@+id/som"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_below="@id/title_info"
         android:layout_alignRight="@+id/submit_rating"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="0dp"
         android:fontFamily="@font/lato_regular"
         android:text="@string/show_on_map"
+        android:onClick="text_msg"
         android:textColor="@color/purple"
-        android:textSize="15dp" />
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        android:backgroundTint="@color/gray"
+        android:elevation="15dp"
+        android:textSize="10dp" />
 
     <TextView
         android:id="@+id/avert"

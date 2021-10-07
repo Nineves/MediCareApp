@@ -13,19 +13,37 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <SearchView
-        android:id="@+id/sv_location"
+
+    <EditText
+        android:id="@+id/search_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/backgrd"
+        android:ems="10"
         android:elevation="5dp"
-        android:iconifiedByDefault="false"
-        android:queryHint="Search a clinic..." />
+        android:fontFamily="@font/lato_medium"
+        android:hint="Search here"
+        android:inputType="textPersonName"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:textColor="#999999"
+        android:textSize="16sp" />
 
-    <AutoCompleteTextView
+    <ImageButton
+        android:id="@+id/search_button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_search_24"
+        android:layout_alignBottom="@id/search_field"
+        android:layout_alignRight="@id/search_field"
+        android:backgroundTint="@color/white"
+        android:elevation="5dp"/>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/myLocButton"

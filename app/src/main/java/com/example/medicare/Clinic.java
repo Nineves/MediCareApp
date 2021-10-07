@@ -2,78 +2,64 @@ package com.example.medicare;
 
 public class Clinic {
 
-    private String clinicAddress;
-    private String clinicContactNumber;
-    private String clinicName;
-    private String operatingHours;
-    private String clinicWebsite;
-    private String postalCode;
-    private double averageRating;
+    private String access_code;
+    private String address;
+    private String contact_number;
+    private int distance;
     private double latitude;
-    private double longitute;
-    private double distance;
+    private double longitude;
+    private String name;
+    private String opening_hours;
+    private double rating;
+    private String website;
 
-    public Clinic(){}
+    public Clinic(){
 
-    public Clinic(String add, String cont, String name,String hours, String web, String post,
-                  double rate, double lat, double log
-                  ){
-        this.clinicAddress=add;
-        this.clinicContactNumber=cont;
-        this.clinicName=name;
-        this.operatingHours=hours;
-        this.clinicWebsite=web;
-        this.postalCode=post;
-        this.averageRating=rate;
-        this.latitude=lat;
-        this.longitute=log;
-        this.distance=0;
     }
 
-    public String getClinicAddress(){ return clinicAddress;}
-
-    public void setClinicAddress(String add){this.clinicAddress=add;}
-
-    public String getClinicContactNumber(){ return clinicContactNumber;}
-
-    public void setClinicContactNumber(String cont){this.clinicContactNumber=cont;}
-
-    public String getClinicName(){return clinicName;}
-
-    public void setClinicName(String clinicName) {
-        this.clinicName = clinicName;
+    public Clinic(String access_code, String address, String contact_number, int distance, double latitude, double longitude, String name, String opening_hours, double rating, String website) {
+        this.access_code = access_code;
+        this.address = address;
+        this.contact_number = contact_number;
+        this.distance = distance;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.name = name;
+        this.opening_hours = opening_hours;
+        this.rating = rating;
+        this.website = website;
     }
 
-    public String getOperatingHours() {
-        return operatingHours;
+    public String getAccess_code() {
+        return access_code;
     }
 
-    public void setOperatingHours(String operatingHours) {
-        this.operatingHours = operatingHours;
+    public void setAccess_code(String access_code) {
+        this.access_code = access_code;
     }
 
-    public String getClinicWebsite() {
-        return clinicWebsite;
+    public String getAddress() {
+        return address;
     }
 
-    public void setClinicWebsite(String clinicWebsite) {
-        this.clinicWebsite = clinicWebsite;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getPostalCode() {
-        return postalCode;
+    public String getContact_number() {
+        return contact_number;
     }
 
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
+    public void setContact_number(String contact_number) {
+        this.contact_number = contact_number;
     }
 
-    public double getAverageRating() {
-        return averageRating;
+    public int getDistance() {
+        return distance;
     }
 
-    public void setAverageRating(double averageRating) {
-        this.averageRating = averageRating;
+    public void setDistance(int distance) {
+        this.distance = distance;
     }
 
     public double getLatitude() {
@@ -84,20 +70,43 @@ public class Clinic {
         this.latitude = latitude;
     }
 
-    public double getDistance() {
-        return distance;
+    public double getLongitude() {
+        return longitude;
     }
 
-    public void setDistance(double distance) {
-        this.distance = distance;
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
-    public double getLongitute() {
-        return longitute;
+    public String getName() {
+        return name;
     }
 
-    public void setLongitute(double longitute) {
-        this.longitute = longitute;
+    public void setName(String name) {
+        this.name = name;
     }
 
+    public String getOpening_hours() {
+        return opening_hours;
+    }
+
+    public void setOpening_hours(String opening_hours) {
+        this.opening_hours = opening_hours;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
 }

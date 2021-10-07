@@ -17,7 +17,9 @@ import android.media.Image;
 import android.os.Bundle;
 import android.os.Looper;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.google.android.gms.location.LocationCallback;
@@ -45,9 +47,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
     ImageButton trigger;
+    ImageButton searchButton;
     private static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
     private double latitude;
     private double longtitude;
+    private EditText searchBar;
+    private String searchContent;
     LocationManager locationManager;
     KmlLayer layer;
 
@@ -122,9 +127,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             e.printStackTrace();
         }
 
-        
-
-
+        searchBar=findViewById(R.id.search_field);
+        searchButton=findViewById(R.id.search_button);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchContent=searchBar.getText().toString();
+                Intent i= new Intent(MapsActivity.this,ViewClinicListActivity.class);
+                i.putExtra("content",searchContent);
+                startActivity(i);
+            }
+        });
 
     }
     @Override

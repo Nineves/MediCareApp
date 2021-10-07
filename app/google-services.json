@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "476722287547",
+    "project_id": "clinicinfo-e71e4",
+    "storage_bucket": "clinicinfo-e71e4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:476722287547:android:f2844e3a85c3b5fec0aa9e",
+        "android_client_info": {
+          "package_name": "com.example.medicare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "476722287547-jmrrij7heqsf7o4jbik175c51cfrs983.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.medicare",
+            "certificate_hash": "de88cfbb46a696fe9e5e1a06dec4716e293c30e9"
+          }
+        },
+        {
+          "client_id": "476722287547-rfrfm3hq2r99il332kroi8qkien7tplq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDT9i_nLZQsm64Amx70T6PIw38GFbOl2Uw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "476722287547-rfrfm3hq2r99il332kroi8qkien7tplq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

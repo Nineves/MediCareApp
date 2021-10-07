@@ -50,6 +50,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MapsActivity"/>
         </activity>
+
+        <activity android:name=".ShowOnMapActivity"
+            android:parentActivityName=".InfoDisplay"></activity>
+
+        <activity android:name=".ViewClinicListActivity"
+            android:parentActivityName=".MapsActivity"></activity>
     </application>
 
 </manifest>
