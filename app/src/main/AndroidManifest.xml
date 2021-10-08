@@ -45,10 +45,7 @@
 
         <activity
             android:name=".InfoDisplay"
-            android:parentActivityName=".MapsActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MapsActivity"/>
+            android:parentActivityName=".ViewClinicListActivity">
         </activity>
 
         <activity android:name=".ShowOnMapActivity"

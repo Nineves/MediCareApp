@@ -12,13 +12,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import com.example.medicare.Clinic;
 public class ClinicDatabaseController {
 
     private DatabaseReference databaseReference;
     private FirebaseDatabase database;
-    private static ArrayList<Clinic> clinicArrayList = new ArrayList<Clinic>();
+    private static List<Clinic> clinicList = new ArrayList<Clinic>();
 
     public interface FirebaseSuccessListener{
         void onDataCompleted(boolean isDataCompleted);
@@ -27,11 +27,11 @@ public class ClinicDatabaseController {
 
     public ClinicDatabaseController(){
 
-        database = FirebaseDatabase.getInstance();
+        database = FirebaseDatabase.getInstance("https://clinicinfo-e71e4-default-rtdb.asia-southeast1.firebasedatabase.app");
     }
 
-    public static ArrayList<Clinic> getClinicArrayList() {
-        return clinicArrayList;
+    public List<Clinic> getClinicArrayList() {
+        return clinicList;
     }
 
     public void readDataFromClinic(final Context context, final  FirebaseSuccessListener firebaseSuccessListener){
@@ -39,28 +39,31 @@ public class ClinicDatabaseController {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String cAccessCode,cAddress, cContactNumber, cName, cOpeningHours,cWebsite;
-                double cLatitude, cLongitude,cRating;
-                int cDistance;
+                String cAccessCode,cAddress, cContactNumber, cName, cOpeningHours,cWebsite,cRating;
+                Double cLatitude, cLongitude;
+                Long cDistance;
 
                 for(DataSnapshot mSnapshot:snapshot.getChildren()){
                     cAccessCode =(String) mSnapshot.child("access_code").getValue();
                     cAddress = (String) mSnapshot.child("address").getValue();
-                    cContactNumber = (String) mSnapshot.child("distance").getValue();
-                    cDistance = (int) mSnapshot.child("distance").getValue();
-                    cLatitude = (double) mSnapshot.child("latitude").getValue();
-                    cLongitude = (double) mSnapshot.child("longitude").getValue();
+                    cContactNumber = String.valueOf(mSnapshot.child("contact_number").getValue());
+                    cDistance = (Long) mSnapshot.child("distance").getValue();
+                    cLatitude = (Double) mSnapshot.child("latitude").getValue();
+                    cLongitude = (Double) mSnapshot.child("longitude").getValue();
                     cName = (String) mSnapshot.child("name").getValue();
                     cOpeningHours = (String) mSnapshot.child("opening_hours").getValue();
-                    cRating = (double) mSnapshot.child("rating").getValue();
+                    cRating = (String) mSnapshot.child("rating").getValue();
                     cWebsite = (String) mSnapshot.child("website").getValue();
+
+                    Clinic clinic = new Clinic(cAccessCode, cAddress,cContactNumber,cDistance,cLatitude,cLongitude,cName,cOpeningHours,cRating,cWebsite);
+                    clinicList.add(clinic);
                 }
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.w("Failed to read value.", error.toException());
             }
         });
     }

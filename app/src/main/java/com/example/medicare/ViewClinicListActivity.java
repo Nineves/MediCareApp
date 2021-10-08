@@ -1,82 +1,96 @@
 package com.example.medicare;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.PersistableBundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.RequestQueue;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ViewClinicListActivity extends AppCompatActivity {
-    private RecyclerView clinicResultList;
-    private DatabaseReference mClinicDatabase;
 
+    RecyclerView clinicRecycler;
+    RecyclerviewAdapter recyclerviewAdapter;
+    EditText searchView;
+    CharSequence search="";
+    ClinicDatabaseController controller;
+
+    List<Clinic> searchResults = new ArrayList<>();
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
-        mClinicDatabase = FirebaseDatabase.getInstance().getReference("clinics");
+
         Intent i=getIntent();
-        firebaseClinicSearch();
-        clinicResultList=findViewById(R.id.clinicSearchResult);
-        clinicResultList.setHasFixedSize(true);
-        clinicResultList.setLayoutManager(new LinearLayoutManager(this));
+        setContentView(R.layout.clinic_search_result);
+        searchView=findViewById(R.id.search_bar);
+        controller = new ClinicDatabaseController();
+        controller.readDataFromClinic(getApplicationContext(), new ClinicDatabaseController.FirebaseSuccessListener() {
+            @Override
+            public void onDataCompleted(boolean isDataCompleted) {
+                Log.d("viewList", "DATA ALREADY LOADED");
+            }
+        });
+        searchResults=controller.getClinicArrayList();
 
+        setClinicRecycler(searchResults);
 
-    }
-
-    private void firebaseClinicSearch(){
-
-        FirebaseRecyclerAdapter<Clinic, ClinicsViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Clinic, ClinicsViewHolder>(
-
-                Clinic.class,
-                R.layout.clinic_search_result_item,
-                ClinicsViewHolder.class,
-                mClinicDatabase
-
-        ) {
-            protected void populateViewHolder(ClinicsViewHolder viewHolder, Clinic c, int position){
-                Float rating=(Float)c.getAverageRating();
-                Double distance=c.getDistance();
-
-                viewHolder.setDetails(c.getClinicName(),rating,c.getClinicAddress(),distance.toString());
+        searchView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
-        };
 
-        clinicResultList.setAdapter(firebaseRecyclerAdapter);
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                recyclerviewAdapter.getFilter().filter(charSequence);
+                search=charSequence;
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
     }
 
-    public static class ClinicsViewHolder extends RecyclerView.ViewHolder{
-        View mView;
-        public ClinicsViewHolder(View itemView){
-            super(itemView);
-            mView = itemView;
-        }
+    private void setClinicRecycler(List<Clinic> clinicDatalist){
 
-        public void setDetails(String clinicName,Float clinicRating,String clinicAddress,String clinicDistance){
-            TextView clinic_name=(TextView) mView.findViewById(R.id.clinicNameSearch);
-            RatingBar clinic_rating=(RatingBar) mView.findViewById(R.id.ratingSearch);
-            TextView clinic_address=(TextView) mView.findViewById(R.id.clinicAddressSearch);
-            TextView clinic_distance=(TextView) mView.findViewById(R.id.clinicDistanceSearch);
+        clinicRecycler=findViewById(R.id.clinicSearchRecycler);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
+        clinicRecycler.setLayoutManager(layoutManager);
+        recyclerviewAdapter = new RecyclerviewAdapter(this,clinicDatalist);
+        clinicRecycler.setAdapter(recyclerviewAdapter);
 
-            clinic_name.setText(clinicName);
-            clinic_rating.setRating(clinicRating);
-            clinic_address.setText(clinicAddress);
-            clinic_distance.setText(clinicDistance);
-
-        }
     }
+
+
+
 }

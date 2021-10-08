@@ -127,14 +127,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             e.printStackTrace();
         }
 
-        searchBar=findViewById(R.id.search_field);
         searchButton=findViewById(R.id.search_button);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                searchContent=searchBar.getText().toString();
                 Intent i= new Intent(MapsActivity.this,ViewClinicListActivity.class);
-                i.putExtra("content",searchContent);
                 startActivity(i);
             }
         });

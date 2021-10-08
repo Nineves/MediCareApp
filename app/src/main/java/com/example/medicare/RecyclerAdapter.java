@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,10 +65,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             holder.medicineManufacturer.setText("Manufacturers: " + searchResults.get(position)[3]);
         }
         else {
-            holder.clinicName.setText(searchResults.get(position)[0]);
-            holder.aveRating.setText(searchResults.get(position)[1]);
-            holder.clinicDistance.setText(searchResults.get(position)[2]);
-            holder.clinicAddress.setText(searchResults.get(position)[3]);
+            holder.clinicName.setText(searchResults.get(position)[6]);
+            float rating=Float.parseFloat(searchResults.get(position)[8]);
+            holder.aveRating.setRating(rating);
+            holder.clinicDistance.setText(searchResults.get(position)[4]+" km");
+            holder.clinicAddress.setText(searchResults.get(position)[1]);
         }
     }
 
@@ -118,7 +120,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView medicineName, dosage, ingredientsList, medicineManufacturer;
-        TextView clinicName, aveRating, clinicDistance, clinicAddress;
+        TextView clinicName, clinicDistance, clinicAddress;
+        RatingBar aveRating;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -130,7 +133,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             }
             else {
                 clinicName = itemView.findViewById(R.id.clinicNameSearch);
-                aveRating = itemView.findViewById(R.id.clinicRatingSearch);
+                aveRating = itemView.findViewById(R.id.ratingSearch);
                 clinicDistance = itemView.findViewById(R.id.clinicDistanceSearch);
                 clinicAddress = itemView.findViewById(R.id.clinicAddressSearch);
             }
