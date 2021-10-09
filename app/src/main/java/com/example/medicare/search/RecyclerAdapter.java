@@ -1,4 +1,4 @@
-package com.example.medicare;
+package com.example.medicare.search;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.medicare.R;
 
 import java.util.ArrayList;
 import java.util.Collection;
