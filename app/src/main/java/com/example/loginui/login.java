@@ -62,10 +62,6 @@ public class login extends AppCompatActivity {
                     return;
                 }
 
-                for(int i=0; i<password_input.length(); i++){
-
-                }
-
                 progressBar.setVisibility(View.VISIBLE);
 
                 //authenticate the user
