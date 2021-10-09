@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="340dp"
-        android:layout_marginTop="600dp"
+        android:layout_marginTop="500dp"
         android:src="@drawable/ic_my_location"
         app:backgroundTint="@color/white"
         app:elevation="6dp"
@@ -39,12 +39,11 @@
 
     <ImageButton
         android:id="@+id/backButtonMap"
-        android:background="@drawable/backbut"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"
-        android:src="@drawable/back_button"
-        />
+        android:background="@drawable/backbut"
+        android:src="@drawable/back_button" />
 
 </RelativeLayout>

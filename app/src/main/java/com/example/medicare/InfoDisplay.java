@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class InfoDisplay  extends AppCompatActivity {
 
     Button ShowMapButton;
+    ImageButton backButton;
     private String access_code;
     private String address;
     private String contact_number;
@@ -46,6 +48,7 @@ public class InfoDisplay  extends AppCompatActivity {
         contact_number=extras.getString("contactNumber");
         latitude=extras.getDouble("latitude");
         longitude=extras.getDouble("longitude");
+        access_code=extras.getString("accessCode");
 
         clinicName=findViewById(R.id.title_info);
         clinicName.setText(name);
@@ -75,6 +78,13 @@ public class InfoDisplay  extends AppCompatActivity {
             }
         });
 
+        backButton=findViewById(R.id.backButtonInfo);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
 
 

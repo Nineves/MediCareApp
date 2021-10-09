@@ -45,7 +45,7 @@ import java.util.List;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener {
 
     private GoogleMap mMap;
-    private ActivityMapsBinding binding;
+    //private ActivityMapsBinding binding;
     ImageButton trigger;
     ImageButton searchButton;
     private static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
@@ -60,8 +60,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMapsBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        Intent i=getIntent();
+
+        //binding = ActivityMapsBinding.inflate(getLayoutInflater());
+        setContentView(R.layout.activity_maps);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -72,7 +74,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         trigger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MapsActivity.this,InfoDisplay.class));
+                finish();
             }
         });
 

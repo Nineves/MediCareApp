@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -40,6 +41,7 @@ public class ViewClinicListActivity extends AppCompatActivity {
     EditText searchView;
     CharSequence search="";
     ClinicDatabaseController controller;
+    ImageButton backButton;
 
     List<Clinic> searchResults = new ArrayList<>();
     @Override
@@ -48,6 +50,7 @@ public class ViewClinicListActivity extends AppCompatActivity {
 
         Intent i=getIntent();
         setContentView(R.layout.clinic_search_result);
+        backButton=findViewById(R.id.backButtonSearch);
         searchView=findViewById(R.id.search_bar);
         controller = new ClinicDatabaseController();
         controller.readDataFromClinic(getApplicationContext(), new ClinicDatabaseController.FirebaseSuccessListener() {
@@ -76,6 +79,13 @@ public class ViewClinicListActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
 
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
 

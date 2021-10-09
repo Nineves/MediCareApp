@@ -20,13 +20,21 @@
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.13802083333333334" />
         <entry key="app/src/main/res/layout/backgrd.xml" value="0.18333333333333332" />
-        <entry key="app/src/main/res/layout/clinic_search_result.xml" value="0.25364583333333335" />
+        <entry key="app/src/main/res/layout/clinic_search_result.xml" value="0.3696943554494945" />
         <entry key="app/src/main/res/layout/clinic_search_result_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/info_page.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/launchui.xml" value="0.17708333333333334" />
+        <entry key="app/src/main/res/layout/loginui.xml" value="0.17708333333333334" />
+        <entry key="app/src/main/res/layout/mainactivityui.xml" value="0.17708333333333334" />
+        <entry key="app/src/main/res/layout/mainpage.xml" value="0.17708333333333334" />
         <entry key="app/src/main/res/layout/map_trial.xml" value="0.21510416666666668" />
         <entry key="app/src/main/res/layout/medicine_info_page.xml" value="0.3802083333333333" />
         <entry key="app/src/main/res/layout/medicine_search_result_item.xml" value="0.13802083333333334" />
+        <entry key="app/src/main/res/layout/menu_page.xml" value="0.17708333333333334" />
+        <entry key="app/src/main/res/layout/resetpassword1.xml" value="0.17708333333333334" />
+        <entry key="app/src/main/res/layout/resetpassword2.xml" value="0.17708333333333334" />
         <entry key="app/src/main/res/layout/show_on_map.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/signupui.xml" value="0.17708333333333334" />
         <entry key="app/src/main/res/menu/search_menu.xml" value="0.13802083333333334" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.19947916666666668" />
       </map>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/homepage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/profilebutton"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/profile" />
+
+    <ImageView
+        android:id="@+id/reminderbutton"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="220dp"
+        app:srcCompat="@drawable/icon2" />
+
+    <ImageView
+        android:id="@+id/infobutton"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="220dp"
+        android:layout_toRightOf="@id/reminderbutton"
+        app:srcCompat="@drawable/icon1" />
+
+    <ImageView
+        android:id="@+id/searchclinicbutton"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@+id/reminderbutton"
+        app:srcCompat="@drawable/icon3" />
+</RelativeLayout>

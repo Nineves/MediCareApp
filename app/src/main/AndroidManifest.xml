@@ -33,7 +33,7 @@
             android:value="${MAPS_API_KEY}" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name=".LaunchActivity"
             android:exported="true"
             android:label="@string/title_activity_maps" >
             <intent-filter>
@@ -53,6 +53,20 @@
 
         <activity android:name=".ViewClinicListActivity"
             android:parentActivityName=".MapsActivity"></activity>
+
+        <activity
+            android:name=".ResetPasswordActivity"
+            android:exported="true" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="true" />
+        <activity android:name=".MainPageActivity"
+            android:exported="true"/>
+        <activity android:name=".MapsActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

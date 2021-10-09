@@ -26,12 +26,21 @@
                 android:src="@drawable/rating_box" />
         </androidx.cardview.widget.CardView>
 
+        <ImageButton
+            android:id="@+id/backButtonInfo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/backbut"
+            android:src="@drawable/back_button" />
+
         <TextView
             android:id="@+id/title_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="60dp"
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/lato_bold"
             android:text="Clinic Information"
