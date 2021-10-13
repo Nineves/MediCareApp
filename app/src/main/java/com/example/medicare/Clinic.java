@@ -5,19 +5,20 @@ public class Clinic {
     private String access_code;
     private String address;
     private String contact_number;
-    private Long distance;
+    private long distance;
     private double latitude;
     private double longitude;
     private String name;
     private String opening_hours;
     private String rating;
     private String website;
+    private long rating_count;
 
     public Clinic(){
 
     }
 
-    public Clinic(String access_code, String address, String contact_number, Long distance, double latitude, double longitude, String name, String opening_hours, String rating, String website) {
+    public Clinic(String access_code, String address, String contact_number, long distance, double latitude, double longitude, String name, String opening_hours, String rating, String website,long rating_count) {
         this.access_code = access_code;
         this.address = address;
         this.contact_number = contact_number;
@@ -28,6 +29,7 @@ public class Clinic {
         this.opening_hours = opening_hours;
         this.rating = rating;
         this.website = website;
+        this.rating_count =rating_count;
     }
 
     public String getAccess_code() {
@@ -108,5 +110,13 @@ public class Clinic {
 
     public void setWebsite(String website) {
         this.website = website;
+    }
+
+    public long getRating_count() {
+        return rating_count;
+    }
+
+    public void setRating_count(long rating_count) {
+        this.rating_count = rating_count;
     }
 }

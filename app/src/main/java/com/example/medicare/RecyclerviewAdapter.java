@@ -73,6 +73,7 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
                 intent.putExtra("longitude",filteredClinicDataList.get(position).getLongitude());
                 intent.putExtra("contactNumber",filteredClinicDataList.get(position).getContact_number());
                 intent.putExtra("accessCode",filteredClinicDataList.get(position).getAccess_code());
+                intent.putExtra("ratingCount",filteredClinicDataList.get(position).getRating_count());
                 context.startActivity(intent);
             }
         });

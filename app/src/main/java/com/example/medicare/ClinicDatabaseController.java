@@ -41,7 +41,7 @@ public class ClinicDatabaseController {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String cAccessCode,cAddress, cContactNumber, cName, cOpeningHours,cWebsite,cRating;
                 Double cLatitude, cLongitude;
-                Long cDistance;
+                Long cDistance,cRatingCount;
 
                 for(DataSnapshot mSnapshot:snapshot.getChildren()){
                     cAccessCode =(String) mSnapshot.child("access_code").getValue();
@@ -54,8 +54,8 @@ public class ClinicDatabaseController {
                     cOpeningHours = (String) mSnapshot.child("opening_hours").getValue();
                     cRating = (String) mSnapshot.child("rating").getValue();
                     cWebsite = (String) mSnapshot.child("website").getValue();
-
-                    Clinic clinic = new Clinic(cAccessCode, cAddress,cContactNumber,cDistance,cLatitude,cLongitude,cName,cOpeningHours,cRating,cWebsite);
+                    cRatingCount=(Long)mSnapshot.child("rating_count").getValue();
+                    Clinic clinic = new Clinic(cAccessCode, cAddress,cContactNumber,cDistance,cLatitude,cLongitude,cName,cOpeningHours,cRating,cWebsite,cRatingCount);
                     clinicList.add(clinic);
                 }
 
