@@ -45,7 +45,7 @@
         android:id="@+id/profileButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/roundProfile_main"
+        app:srcCompat="@drawable/round_profile_main"
         android:layout_alignParentRight="true"
         android:layout_marginRight="30dp"
         android:layout_marginTop="30dp"/>

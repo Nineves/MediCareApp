@@ -20,7 +20,7 @@ public class MainPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainpage);
 
-        profilebtn = findViewById(R.id.profilebutton);
+        profilebtn = findViewById(R.id.profileButton);
         reminderbtn = findViewById(R.id.reminderbutton);
         medicinebtn = findViewById(R.id.infobutton);
         clinicbtn = findViewById(R.id.searchclinicbutton);
