@@ -5,34 +5,55 @@
     android:id="@+id/Person1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/signin"
     tools:context=".MainAcitivity">
 
-    <Button
+    <soup.neumorphism.NeumorphButton
+        style="@style/Widget.Neumorph.Button"
         android:id="@+id/SigninButton"
         android:layout_width="298dp"
         android:layout_height="84dp"
         android:layout_marginTop="500dp"
         android:layout_marginEnd="55dp"
         android:layout_marginBottom="36dp"
-        android:background="@drawable/round"
+        app:neumorph_backgroundColor="@color/gray"
+        android:fontFamily="@font/lato_medium"
         android:text="Login with Email"
-        android:textColor="#000000"
-        android:textSize="24sp"
+        android:textColor="#334669"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/Create"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"></soup.neumorphism.NeumorphButton>
 
-    <ImageView
-        android:id="@+id/SigninUI"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/signin"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="75dp"
+        android:layout_marginBottom="36dp"
+        android:text="MediCare"
+        android:gravity="center"
+        android:textColor="#334669"
+        android:textSize="50sp"
+        android:fontFamily="@font/lato_bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        ></TextView>
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="350dp"
+        android:layout_marginEnd="75dp"
+        android:layout_marginBottom="36dp"
+        android:text="Your daily Medical Helper"
+        android:gravity="center"
+        android:textColor="#334669"
+        android:textSize="20sp"
+        android:fontFamily="@font/lato_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        ></TextView>
 
     <TextView
         android:id="@+id/Create"
@@ -41,6 +62,7 @@
         android:layout_marginStart="255dp"
         android:layout_marginTop="26dp"
         android:text="Create "
+        android:fontFamily="@font/lato_medium"
         android:textColor="#C43BFF"
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/SigninButton"
@@ -55,6 +77,7 @@
         android:layout_marginTop="3dp"
         android:layout_marginEnd="5dp"
         android:text="Don't have an account?"
+        android:fontFamily="@font/lato_medium"
         android:textColor="#FFFFFF"
         android:textSize="12sp"
         app:layout_constraintEnd_toStartOf="@+id/Create"
@@ -67,6 +90,7 @@
         android:layout_marginStart="64dp"
         android:layout_marginTop="8dp"
         android:text="By Continuing you Agree to the Term and Conditions"
+        android:fontFamily="@font/lato_medium"
         android:textColor="#FFFFFF"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"

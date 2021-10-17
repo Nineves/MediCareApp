@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+
+            android:id="@+id/background"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="178dp"
+            android:background="@drawable/rounded_rec"
+            android:orientation="vertical">
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="350dp"
+                android:layout_marginTop="12dp"
+                android:background="@android:color/transparent"
+                android:elevation="-10dp"
+                android:onClick="sendMessage"></Button>
+
+            <soup.neumorphism.NeumorphCardView
+                android:id="@+id/back"
+                style="@style/Widget.Neumorph.CardView"
+                android:layout_width="match_parent"
+                android:layout_height="700dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp">
+
+            </soup.neumorphism.NeumorphCardView>
+
+            <soup.neumorphism.NeumorphCardView
+                style="@style/Widget.Neumorph.CardView"
+                android:layout_width="300dp"
+                android:layout_height="73dp"
+                android:layout_alignTop="@+id/back"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="20dp"
+                app:neumorph_shapeType="pressed">
+
+                <EditText
+                    android:id="@+id/edit_med_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@null"
+                    android:fontFamily="@font/lato_medium"
+                    android:hint="Medicine name"
+                    android:inputType="text"
+                    android:maxLength="50"
+                    android:maxLines="1"></EditText>
+            </soup.neumorphism.NeumorphCardView>
+
+            <soup.neumorphism.NeumorphCardView
+                style="@style/Widget.Neumorph.CardView"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="49dp"
+                android:layout_marginTop="220dp"
+                app:cardCornerRadius="@dimen/four_dp"
+                app:cardElevation="@dimen/two_dp"
+                app:cardUseCompatPadding="true"
+                app:contentPadding="@dimen/sixteen_dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <com.example.medicare.views.RobotoBoldTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/medicine_days"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/text_medium" />
+
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/every_day"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="14dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/every_day" />
+
+                    <LinearLayout
+                        android:id="@+id/checkbox_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="7">
+
+                        <com.example.medicare.views.DayViewCheckBox
+                            android:id="@+id/dv_sunday"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/background_day_view"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="S" />
+
+                        <com.example.medicare.views.DayViewCheckBox
+                            android:id="@+id/dv_monday"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/background_day_view"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="M" />
+
+
+                        <com.example.medicare.views.DayViewCheckBox
+                            android:id="@+id/dv_tuesday"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/background_day_view"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="T" />
+
+                        <com.example.medicare.views.DayViewCheckBox
+                            android:id="@+id/dv_wednesday"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/background_day_view"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="W" />
+
+                        <com.example.medicare.views.DayViewCheckBox
+                            android:id="@+id/dv_thursday"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/background_day_view"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="T" />
+
+                        <com.example.medicare.views.DayViewCheckBox
+                            android:id="@+id/dv_friday"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/background_day_view"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="F" />
+
+
+                        <com.example.medicare.views.DayViewCheckBox
+                            android:id="@+id/dv_saturday"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/background_day_view"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="S" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </soup.neumorphism.NeumorphCardView>
+
+            <soup.neumorphism.NeumorphCardView
+                style="@style/Widget.Neumorph.CardView"
+                android:layout_width="300dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="55dp"
+                android:layout_marginTop="400dp"
+                app:cardCornerRadius="@dimen/four_dp"
+                app:cardElevation="@dimen/two_dp"
+                app:cardUseCompatPadding="true"
+                app:contentPadding="@dimen/sixteen_dp"
+                app:neumorph_shapeType="pressed">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <com.example.medicare.views.RobotoBoldTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/title_reminder"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/text_medium" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
+
+                        <com.example.medicare.views.RobotoBoldTextView
+                            android:id="@+id/tv_medicine_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/drawable_underline"
+                            android:gravity="center"
+                            android:padding="@dimen/four_dp"
+                            android:textColor="#4d4d4d"
+                            android:textSize="@dimen/text_large"
+                            android:textStyle="bold"
+                            tools:text="23:30" />
+
+                        <EditText
+                            android:id="@+id/tv_dose_quantity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/drawable_underline"
+                            android:gravity="center"
+                            android:padding="@dimen/four_dp"
+                            android:text="1.0"
+                            android:inputType="text"
+                            android:maxLength="8"
+                            android:maxLines="1"/>
+
+
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/spinner_dose_units"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_weight="1"
+                            android:entries="@array/medications_shape_array" />
+                    </LinearLayout>
+                </LinearLayout>
+            </soup.neumorphism.NeumorphCardView>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:layout_width="200dp"
+        android:layout_height="175dp"
+        android:elevation="-3dp"
+        android:src="@drawable/logo"></androidx.constraintlayout.utils.widget.ImageFilterView>
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="45dp"
+        android:elevation="-1dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="Medicine
+                        Reminder"
+        android:textColor="@color/white"
+        android:textSize="35dp"></TextView>
+
+
+
+
+
+</RelativeLayout>
