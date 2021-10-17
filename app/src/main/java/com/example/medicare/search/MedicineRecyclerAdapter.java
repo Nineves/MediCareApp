@@ -21,7 +21,7 @@ import java.util.Collection;
 import java.util.List;
 
 //class responsible for displaying items inside RecyclerView
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> implements Filterable {
+public class MedicineRecyclerAdapter extends RecyclerView.Adapter<MedicineRecyclerAdapter.ViewHolder> implements Filterable {
 
     // for medicine search result, each element in list has format
     // {"name", "dosage form", "ingredients", "manufacturers"}
@@ -33,7 +33,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     boolean medicineSearch;
     Context context;
 
-    public RecyclerAdapter(Context context, List<String[]> searchResults, boolean medicineSearch) {
+    public MedicineRecyclerAdapter(Context context, List<String[]> searchResults, boolean medicineSearch) {
         this.context = context;
         this.searchResults = searchResults;
         this.allResultsUnfiltered = new ArrayList<>(searchResults);

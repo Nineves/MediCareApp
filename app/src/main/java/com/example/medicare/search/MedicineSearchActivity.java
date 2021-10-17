@@ -1,8 +1,6 @@
 package com.example.medicare.search;
 
 
-import static android.widget.Toast.LENGTH_LONG;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -10,15 +8,11 @@ import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,10 +29,10 @@ import com.example.medicare.medicine.MedicineDatabaseController;
 import org.json.JSONArray;
 
 
-public class SearchActivity extends AppCompatActivity{
+public class MedicineSearchActivity extends AppCompatActivity{
 
     RecyclerView searchResultsRCView;
-    RecyclerAdapter recyclerAdapter;
+    MedicineRecyclerAdapter medicineRecyclerAdapter;
     RequestQueue requestQueue;
     Handler mainHandler = new Handler();
     ProgressDialog progressDialog;
@@ -67,9 +61,9 @@ public class SearchActivity extends AppCompatActivity{
         searchResultsRCView = findViewById(R.id.searchResultsRCView);
         layoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
         searchResultsRCView.setLayoutManager(layoutManager);
-        recyclerAdapter = new RecyclerAdapter(this, searchResults, true);
+        medicineRecyclerAdapter = new MedicineRecyclerAdapter(this, searchResults, true);
         //recyclerAdapter = new RecyclerAdapter(searchResults, false)
-        searchResultsRCView.setAdapter(recyclerAdapter);
+        searchResultsRCView.setAdapter(medicineRecyclerAdapter);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         searchResultsRCView.addItemDecoration(dividerItemDecoration);
@@ -90,7 +84,7 @@ public class SearchActivity extends AppCompatActivity{
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                recyclerAdapter.getFilter().filter(charSequence);
+                medicineRecyclerAdapter.getFilter().filter(charSequence);
                 //search=charSequence;
             }
 
@@ -109,7 +103,7 @@ public class SearchActivity extends AppCompatActivity{
             mainHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    progressDialog = new ProgressDialog(SearchActivity.this);
+                    progressDialog = new ProgressDialog(MedicineSearchActivity.this);
                     progressDialog.setMessage("Fetching data...");
                     progressDialog.setCancelable(false);
                     progressDialog.show();
@@ -119,7 +113,7 @@ public class SearchActivity extends AppCompatActivity{
             if (searchResults.isEmpty()) {
                 MedicineDatabaseController.updateMedicineDatabase();
                 searchResults = MedicineDatabaseController.getMedicineData();
-                recyclerAdapter.updateSearchResults(searchResults);
+                medicineRecyclerAdapter.updateSearchResults(searchResults);
             }
 
             mainHandler.post(new Runnable() {
@@ -127,7 +121,7 @@ public class SearchActivity extends AppCompatActivity{
                 public void run() {
                     if (progressDialog.isShowing()) {
                         progressDialog.dismiss();
-                        recyclerAdapter.notifyDataSetChanged();
+                        medicineRecyclerAdapter.notifyDataSetChanged();
                         //Toast.makeText(context, "searchResults size updated: " + recyclerAdapter.getSearchResultsSize(), Toast.LENGTH_SHORT).show();
 
                     }

@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.medicare.search.SearchActivity;
+import com.example.medicare.search.MedicineSearchActivity;
 
 public class MainPageActivity extends AppCompatActivity {
 
@@ -37,7 +37,7 @@ public class MainPageActivity extends AppCompatActivity {
         medicinebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), SearchActivity.class));
+                startActivity(new Intent(getApplicationContext(), MedicineSearchActivity.class));
             }
         });
     }
