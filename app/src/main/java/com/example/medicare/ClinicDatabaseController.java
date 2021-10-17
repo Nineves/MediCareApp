@@ -22,7 +22,6 @@ public class ClinicDatabaseController {
 
     public interface FirebaseSuccessListener{
         void onDataCompleted(boolean isDataCompleted);
-
     }
 
     public ClinicDatabaseController(){

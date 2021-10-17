@@ -61,26 +61,9 @@ public class ViewClinicListActivity extends AppCompatActivity {
         });
         searchResults=controller.getClinicArrayList();
 
-        setClinicRecycler(searchResults);
+        displayResults(searchResults);
 
-        searchView.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                recyclerviewAdapter.getFilter().filter(charSequence);
-                search=charSequence;
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
+        searchDatabase();
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +82,31 @@ public class ViewClinicListActivity extends AppCompatActivity {
         recyclerviewAdapter = new RecyclerviewAdapter(this,clinicDatalist);
         clinicRecycler.setAdapter(recyclerviewAdapter);
 
+    }
+
+    public void searchDatabase(){
+        searchView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                recyclerviewAdapter.getFilter().filter(charSequence);
+                search=charSequence;
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
+
+    public void displayResults(List<Clinic> results){
+        setClinicRecycler(results);
     }
 
 

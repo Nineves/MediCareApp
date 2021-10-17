@@ -139,5 +139,13 @@ public class InfoDisplay extends AppCompatActivity {
 
     }
 
+    public String getAveRating(){
+        return rating;
+    }
+    public void updateRating(String accode, double newRat){
+        String nR=Double.toString(newRat).substring(0,3);
+        ref.child(accode).child("rating").setValue(nR);
+    }
+
 
 }
