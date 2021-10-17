@@ -6,9 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-
 import com.example.medicare.medicineReminder.MedicineActivity;
-
+import com.example.medicare.search.MedicineSearchActivity;
 public class MainPageActivity extends AppCompatActivity {
 
     ImageView profilebtn;
@@ -21,7 +20,7 @@ public class MainPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainpage);
 
-        //profilebtn = findViewById(R.id.profilebutton);
+        profilebtn = findViewById(R.id.profilebutton);
         reminderbtn = findViewById(R.id.reminderbutton);
         medicinebtn = findViewById(R.id.infobutton);
         clinicbtn = findViewById(R.id.searchclinicbutton);
@@ -33,6 +32,14 @@ public class MainPageActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), MapsActivity.class));
             }
         });
+
+        medicinebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), MedicineSearchActivity.class));
+            }
+        });
+
         reminderbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

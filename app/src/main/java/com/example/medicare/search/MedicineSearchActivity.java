@@ -2,15 +2,19 @@ package com.example.medicare.search;
 
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -21,21 +25,21 @@ import com.android.volley.RequestQueue;
 import com.example.medicare.R;
 import com.example.medicare.medicine.MedicineDatabaseController;
 
-import java.net.*;
-import java.io.*;
 
-
-import org.json.JSONObject;
 import org.json.JSONArray;
 
 
-public class SearchActivity extends AppCompatActivity{
+public class MedicineSearchActivity extends AppCompatActivity{
 
     RecyclerView searchResultsRCView;
-    RecyclerAdapter recyclerAdapter;
+    MedicineRecyclerAdapter medicineRecyclerAdapter;
     RequestQueue requestQueue;
     Handler mainHandler = new Handler();
     ProgressDialog progressDialog;
+    ImageButton backButton;
+    EditText searchBar;
+    Context context = this;
+    RecyclerView.LayoutManager layoutManager;
 
     String medicineURLstring = "https://data.gov.sg/api/action/datastore_search?resource_id=3ee20559-372d-42f0-bde9-245e21f7f39b&limit=5621";
     String medicineStr;
@@ -49,20 +53,45 @@ public class SearchActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.medicine_activity_search);
 
         MyThread myThread = new MyThread();
         myThread.start();
 
-
         searchResultsRCView = findViewById(R.id.searchResultsRCView);
-        recyclerAdapter = new RecyclerAdapter(searchResults, true);
-        //recyclerAdapter = new RecyclerAdapter(searchResults, false);
-
-        searchResultsRCView.setAdapter(recyclerAdapter);
+        layoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
+        searchResultsRCView.setLayoutManager(layoutManager);
+        medicineRecyclerAdapter = new MedicineRecyclerAdapter(this, searchResults, true);
+        //recyclerAdapter = new RecyclerAdapter(searchResults, false)
+        searchResultsRCView.setAdapter(medicineRecyclerAdapter);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         searchResultsRCView.addItemDecoration(dividerItemDecoration);
+
+        backButton=findViewById(R.id.backButtonSearchMedicine);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        searchBar = findViewById(R.id.med_search_bar);
+        searchBar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                medicineRecyclerAdapter.getFilter().filter(charSequence);
+                //search=charSequence;
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
 
     }
 
@@ -74,30 +103,35 @@ public class SearchActivity extends AppCompatActivity{
             mainHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    progressDialog = new ProgressDialog(SearchActivity.this);
+                    progressDialog = new ProgressDialog(MedicineSearchActivity.this);
                     progressDialog.setMessage("Fetching data...");
                     progressDialog.setCancelable(false);
                     progressDialog.show();
                 }
             });
 
-            MedicineDatabaseController.updateMedicineDatabase();
-            searchResults = MedicineDatabaseController.getMedicineData();
+            if (searchResults.isEmpty()) {
+                MedicineDatabaseController.updateMedicineDatabase();
+                searchResults = MedicineDatabaseController.getMedicineData();
+                medicineRecyclerAdapter.updateSearchResults(searchResults);
+            }
 
             mainHandler.post(new Runnable() {
                 @Override
                 public void run() {
                     if (progressDialog.isShowing()) {
                         progressDialog.dismiss();
-                        recyclerAdapter.notifyDataSetChanged();
-                    }
+                        medicineRecyclerAdapter.notifyDataSetChanged();
+                        //Toast.makeText(context, "searchResults size updated: " + recyclerAdapter.getSearchResultsSize(), Toast.LENGTH_SHORT).show();
 
+                    }
                 }
             });
 
         }
     }
 
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search_menu, menu);
@@ -117,6 +151,8 @@ public class SearchActivity extends AppCompatActivity{
         });
         return super.onCreateOptionsMenu(menu);
     }
+    */
+
 
 
 }

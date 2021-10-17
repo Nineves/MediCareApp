@@ -1,5 +1,6 @@
 package com.example.medicare.search;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.medicare.ItemAnimation;
 import com.example.medicare.R;
 
 import java.util.ArrayList;
@@ -19,7 +21,7 @@ import java.util.Collection;
 import java.util.List;
 
 //class responsible for displaying items inside RecyclerView
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> implements Filterable {
+public class MedicineRecyclerAdapter extends RecyclerView.Adapter<MedicineRecyclerAdapter.ViewHolder> implements Filterable {
 
     // for medicine search result, each element in list has format
     // {"name", "dosage form", "ingredients", "manufacturers"}
@@ -29,11 +31,25 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     List<String[]> searchResults;
     List<String[]> allResultsUnfiltered;
     boolean medicineSearch;
+    Context context;
 
-    public RecyclerAdapter(List<String[]> searchResults, boolean medicineSearch) {
+    public MedicineRecyclerAdapter(Context context, List<String[]> searchResults, boolean medicineSearch) {
+        this.context = context;
         this.searchResults = searchResults;
-        this.allResultsUnfiltered = searchResults;
+        this.allResultsUnfiltered = new ArrayList<>(searchResults);
         this.medicineSearch = medicineSearch;
+        //Toast.makeText(this.context, "searchResults size: " + this.searchResults.size(), Toast.LENGTH_SHORT).show();
+    }
+
+    public int getSearchResultsSize() {
+        return this.searchResults.size();
+    }
+
+    public void updateSearchResults(List<String[]> searchResults) {
+        this.searchResults = searchResults;
+        //this.searchResults = new ArrayList<>(searchResults);
+        //this.allResultsUnfiltered = searchResults;
+        this.allResultsUnfiltered = new ArrayList<>(searchResults);
     }
 
     public static List<String[]> cloneList(List<String[]> list) {
@@ -46,7 +62,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     //controls displaying items in RecyclerView
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view;
         if (medicineSearch) {
             view = layoutInflater.inflate(R.layout.medicine_search_result_item, parent, false);
@@ -73,6 +89,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             holder.clinicDistance.setText(searchResults.get(position)[4]+" km");
             holder.clinicAddress.setText(searchResults.get(position)[1]);
         }
+
+        ItemAnimation.animateFadeIn(holder.itemView, position);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+            }
+        });
     }
 
     @Override
@@ -114,7 +139,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         //run on UI thread
         @Override
         protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-            searchResults = new ArrayList<>();
+            //searchResults = new ArrayList<>();
+            searchResults.clear();
             searchResults.addAll((Collection<? extends String[]>) filterResults.values);
             notifyDataSetChanged();
         }
