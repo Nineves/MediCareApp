@@ -1,16 +1,26 @@
 package com.example.medicare.search;
 
 
+import static android.widget.Toast.LENGTH_LONG;
+
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -21,11 +31,7 @@ import com.android.volley.RequestQueue;
 import com.example.medicare.R;
 import com.example.medicare.medicine.MedicineDatabaseController;
 
-import java.net.*;
-import java.io.*;
 
-
-import org.json.JSONObject;
 import org.json.JSONArray;
 
 
@@ -36,6 +42,10 @@ public class SearchActivity extends AppCompatActivity{
     RequestQueue requestQueue;
     Handler mainHandler = new Handler();
     ProgressDialog progressDialog;
+    ImageButton backButton;
+    EditText searchBar;
+    Context context = this;
+    RecyclerView.LayoutManager layoutManager;
 
     String medicineURLstring = "https://data.gov.sg/api/action/datastore_search?resource_id=3ee20559-372d-42f0-bde9-245e21f7f39b&limit=5621";
     String medicineStr;
@@ -49,20 +59,45 @@ public class SearchActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.medicine_activity_search);
 
         MyThread myThread = new MyThread();
         myThread.start();
 
-
         searchResultsRCView = findViewById(R.id.searchResultsRCView);
-        recyclerAdapter = new RecyclerAdapter(searchResults, true);
-        //recyclerAdapter = new RecyclerAdapter(searchResults, false);
-
+        layoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
+        searchResultsRCView.setLayoutManager(layoutManager);
+        recyclerAdapter = new RecyclerAdapter(this, searchResults, true);
+        //recyclerAdapter = new RecyclerAdapter(searchResults, false)
         searchResultsRCView.setAdapter(recyclerAdapter);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         searchResultsRCView.addItemDecoration(dividerItemDecoration);
+
+        backButton=findViewById(R.id.backButtonSearchMedicine);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        searchBar = findViewById(R.id.med_search_bar);
+        searchBar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                recyclerAdapter.getFilter().filter(charSequence);
+                //search=charSequence;
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
 
     }
 
@@ -81,8 +116,11 @@ public class SearchActivity extends AppCompatActivity{
                 }
             });
 
-            MedicineDatabaseController.updateMedicineDatabase();
-            searchResults = MedicineDatabaseController.getMedicineData();
+            if (searchResults.isEmpty()) {
+                MedicineDatabaseController.updateMedicineDatabase();
+                searchResults = MedicineDatabaseController.getMedicineData();
+                recyclerAdapter.updateSearchResults(searchResults);
+            }
 
             mainHandler.post(new Runnable() {
                 @Override
@@ -90,14 +128,16 @@ public class SearchActivity extends AppCompatActivity{
                     if (progressDialog.isShowing()) {
                         progressDialog.dismiss();
                         recyclerAdapter.notifyDataSetChanged();
-                    }
+                        //Toast.makeText(context, "searchResults size updated: " + recyclerAdapter.getSearchResultsSize(), Toast.LENGTH_SHORT).show();
 
+                    }
                 }
             });
 
         }
     }
 
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search_menu, menu);
@@ -117,6 +157,8 @@ public class SearchActivity extends AppCompatActivity{
         });
         return super.onCreateOptionsMenu(menu);
     }
+    */
+
 
 
 }

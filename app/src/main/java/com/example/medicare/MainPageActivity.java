@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.medicare.search.SearchActivity;
+
 public class MainPageActivity extends AppCompatActivity {
 
     ImageView profilebtn;
@@ -29,6 +31,13 @@ public class MainPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), MapsActivity.class));
+            }
+        });
+
+        medicinebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), SearchActivity.class));
             }
         });
     }
