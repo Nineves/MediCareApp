@@ -111,10 +111,10 @@ public class InfoDisplay extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 newRating=mRatingBar.getRating();
-                ratingCount=ratingCount+1;
-                ref.child(access_code).child("rating_count").setValue(ratingCount);
                 double r=Double.parseDouble(rating);
                 newRating=calAve(ratingCount,r,newRating);
+                ratingCount=ratingCount+1;
+                ref.child(access_code).child("rating_count").setValue(ratingCount);
                 String nR=Double.toString(newRating).substring(0,3);
                 ref.child(access_code).child("rating").setValue(nR);
                 Log.e("Update rating","Update successfully.");
@@ -126,7 +126,7 @@ public class InfoDisplay extends AppCompatActivity {
 
     public double calAve(int count, double ave,double newR){
 
-        return (count*ave+newR)/count;
+        return (count*ave+newR)/(count+1);
 
     }
 
