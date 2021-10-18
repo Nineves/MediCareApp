@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.medicare.search.MedicineSearchActivity;
+import com.example.medicare.medicine_search.MedicineSearchActivity;
 
 public class MainPageActivity extends AppCompatActivity {
 

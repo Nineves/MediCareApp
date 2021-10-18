@@ -1,8 +1,6 @@
-package com.example.medicare.search;
-
+package com.example.medicare.medicine_search;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -20,35 +18,28 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import com.android.volley.RequestQueue;
 import com.example.medicare.R;
 import com.example.medicare.medicine.MedicineDatabaseController;
-
-
-import org.json.JSONArray;
 
 
 public class MedicineSearchActivity extends AppCompatActivity{
 
     RecyclerView searchResultsRCView;
     MedicineRecyclerAdapter medicineRecyclerAdapter;
-    RequestQueue requestQueue;
     Handler mainHandler = new Handler();
     ProgressDialog progressDialog;
     ImageButton backButton;
     EditText searchBar;
-    Context context = this;
+    List<String[]> searchResults = new ArrayList<>();
     RecyclerView.LayoutManager layoutManager;
+    //Context context = this;
 
-    String medicineURLstring = "https://data.gov.sg/api/action/datastore_search?resource_id=3ee20559-372d-42f0-bde9-245e21f7f39b&limit=5621";
-    String medicineStr;
-    JSONArray medicineRecordsjson;
+
     // for medicine search result, each element in list has format
     // {"name", "dosage form", "ingredients", "manufacturers"}
     // for clinic search result, each element in list has format
     // {"name", "clinic ave rating", "clinic distance", "clinic address"}
-    List<String[]> searchResults = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +52,7 @@ public class MedicineSearchActivity extends AppCompatActivity{
         searchResultsRCView = findViewById(R.id.searchResultsRCView);
         layoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
         searchResultsRCView.setLayoutManager(layoutManager);
-        medicineRecyclerAdapter = new MedicineRecyclerAdapter(this, searchResults, true);
+        medicineRecyclerAdapter = new MedicineRecyclerAdapter(this, searchResults);
         //recyclerAdapter = new RecyclerAdapter(searchResults, false)
         searchResultsRCView.setAdapter(medicineRecyclerAdapter);
 

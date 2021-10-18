@@ -51,7 +51,7 @@
         <activity
             android:name=".ViewClinicListActivity"
             android:parentActivityName=".MapsActivity" />
-        <activity android:name=".search.MedicineSearchActivity" />
+        <activity android:name=".medicine_search.MedicineSearchActivity" />
         <activity
             android:name=".ResetPasswordActivity"
             android:exported="true" />
