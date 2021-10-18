@@ -20,7 +20,7 @@ public class MainPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainpage);
 
-        profilebtn = findViewById(R.id.profileButton);
+        profilebtn = findViewById(R.id.profile_button_main);
         reminderbtn = findViewById(R.id.reminderbutton);
         medicinebtn = findViewById(R.id.infobutton);
         clinicbtn = findViewById(R.id.searchclinicbutton);
@@ -44,6 +44,13 @@ public class MainPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), MedicineActivity.class));
+            }
+        });
+
+        profilebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),UserProfileActivity.class));
             }
         });
     }

@@ -15,6 +15,7 @@
         <entry key="app/src/main/res/drawable/back_button.xml" value="0.19948717948717948" />
         <entry key="app/src/main/res/drawable/backgrd.xml" value="0.19948717948717948" />
         <entry key="app/src/main/res/drawable/background_day_view.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/drawable/circle.xml" value="0.33093090789754576" />
         <entry key="app/src/main/res/drawable/gradient_homepage.xml" value="0.3260416666666667" />
         <entry key="app/src/main/res/drawable/ic_add.xml" value="0.1361111111111111" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1361111111111111" />
@@ -24,6 +25,8 @@
         <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_my_location.xml" value="0.20260416666666667" />
         <entry key="app/src/main/res/drawable/ic_search_white.xml" value="0.15416666666666667" />
+        <entry key="app/src/main/res/drawable/profile_2.xml" value="0.2953846153846154" />
+        <entry key="app/src/main/res/drawable/profile_pic.xml" value="0.2953846153846154" />
         <entry key="app/src/main/res/drawable/rounded_rec.xml" value="0.3260416666666667" />
         <entry key="app/src/main/res/drawable/search_bgd.xml" value="0.2671875" />
         <entry key="app/src/main/res/font/lato.xml" value="0.25885416666666666" />
@@ -49,6 +52,7 @@
         <entry key="app/src/main/res/layout/medicine_info_page.xml" value="0.3802083333333333" />
         <entry key="app/src/main/res/layout/medicine_search_result_item.xml" value="0.13802083333333334" />
         <entry key="app/src/main/res/layout/menu_page.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/profile_page.xml" value="0.2838541666666667" />
         <entry key="app/src/main/res/layout/resetpassword1.xml" value="0.26721014492753625" />
         <entry key="app/src/main/res/layout/resetpassword2.xml" value="0.335" />
         <entry key="app/src/main/res/layout/row_medicine.xml" value="0.24895833333333334" />

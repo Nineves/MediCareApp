@@ -57,10 +57,11 @@
         android:elevation="-1dp"/>
 
     <ImageView
+        android:id="@+id/profile_button_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/dec2_main"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        app:srcCompat="@drawable/dec2_main" />
 
     <ImageView
         android:id="@+id/infobutton"
