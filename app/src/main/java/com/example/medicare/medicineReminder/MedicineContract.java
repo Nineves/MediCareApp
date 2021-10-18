@@ -2,8 +2,8 @@ package com.example.medicare.medicineReminder;
 
 import android.content.Context;
 
-import com.example.medicare.BasePresenter;
-import com.example.medicare.BaseView;
+import com.example.medicare.addmedicine.BasePresenter;
+import com.example.medicare.addmedicine.BaseView;
 import com.example.medicare.data.source.MedicineAlarm;
 
 import java.util.List;

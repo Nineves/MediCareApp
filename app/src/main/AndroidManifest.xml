@@ -34,7 +34,7 @@
             android:value="${MAPS_API_KEY}" />
 
         <activity
-            android:name=".LaunchActivity"
+            android:name=".login.LaunchActivity"
             android:exported="true"
             android:label="@string/title_activity_maps" >
             <intent-filter>
@@ -45,35 +45,35 @@
         </activity>
 
         <activity
-            android:name=".InfoDisplay"
-            android:parentActivityName=".ViewClinicListActivity">
+            android:name=".clinic.InfoDisplay"
+            android:parentActivityName=".clinic.ViewClinicListActivity">
         </activity>
 
-        <activity android:name=".ShowOnMapActivity"
-            android:parentActivityName=".InfoDisplay"></activity>
+        <activity android:name=".clinic.ShowOnMapActivity"
+            android:parentActivityName=".clinic.InfoDisplay"></activity>
 
-        <activity android:name=".ViewClinicListActivity"
-            android:parentActivityName=".MapsActivity"></activity>
+        <activity android:name=".clinic.ViewClinicListActivity"
+            android:parentActivityName=".clinic.MapsActivity"></activity>
 
         <activity android:name=".search.MedicineSearchActivity"></activity>
 
         <activity
-            android:name=".ResetPasswordActivity"
+            android:name=".login.ResetPasswordActivity"
             android:exported="true" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".login.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".login.RegisterActivity"
             android:exported="true" />
         <activity android:name=".MainPageActivity"
             android:exported="true"/>
-        <activity android:name=".MapsActivity"
+        <activity android:name=".clinic.MapsActivity"
             android:exported="true"/>
         <activity android:name=".addmedicine.AddMedicineActivity"/>
         <activity android:name=".alarm.ReminderActivity"/>
         <activity android:name=".medicineReminder.MedicineActivity"/>
-        <activity android:name=".UserProfileActivity"/>
+        <activity android:name=".user.UserProfileActivity"/>
 
     </application>
 

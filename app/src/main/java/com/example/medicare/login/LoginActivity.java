@@ -1,4 +1,4 @@
-package com.example.medicare;
+package com.example.medicare.login;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,53 +11,44 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.medicare.MainPageActivity;
+import com.example.medicare.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class RegisterActivity extends AppCompatActivity {
-    EditText username, email, password, passwordConfirm;
-    Button registerbtn;
+public class LoginActivity extends AppCompatActivity {
+
+    EditText email, password;
+    TextView forgetbtn;
+    Button loginbtn;
+    ProgressBar progressBar;
     ImageView backbtn;
     FirebaseAuth fAuth;
-    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.signupui);
+        setContentView(R.layout.loginui);
 
-        username = findViewById(R.id.username_input);
-        email = findViewById(R.id.email_input);
-        password = findViewById(R.id.password_input);
-        passwordConfirm = findViewById(R.id.confirmPassword_input);
-        registerbtn = findViewById(R.id.register_button);
-        backbtn = findViewById(R.id.backbtn2);
-        progressBar = findViewById(R.id.progressBar1);
+        email = findViewById(R.id.email_input1);
+        password = findViewById(R.id.password_input1);
+        loginbtn = findViewById(R.id.login_button);
+        forgetbtn = findViewById(R.id.forgetlink);
+        backbtn = findViewById(R.id.backbtn);
+        progressBar = findViewById(R.id.progressBar);
 
         fAuth = FirebaseAuth.getInstance();
 
-        /*
-        if(fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            finish();
-        }
-        */
-
-        registerbtn.setOnClickListener(new View.OnClickListener() {
+        loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String username_input = username.getText().toString().trim();
                 String email_input = email.getText().toString().trim();
                 String password_input = password.getText().toString().trim();
-                String passwordC_input = passwordConfirm.getText().toString().trim();
-
-                if(TextUtils.isEmpty(username_input)){
-                    username.setError("Username is required!");
-                }
 
                 if(TextUtils.isEmpty(email_input)){
                     email.setError("Email is required!");
@@ -69,15 +60,6 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                if(TextUtils.isEmpty(passwordC_input)){
-                    passwordConfirm.setError("Please confirm your password!");
-                    return;
-                }
-
-                if(!passwordC_input.equals(password_input)){
-                    passwordConfirm.setError("Two passwords are not identical!");
-                }
-
                 if(password_input.length() < 6){
                     password.setError("Password must be at least 6 characters!");
                     return;
@@ -85,30 +67,39 @@ public class RegisterActivity extends AppCompatActivity {
 
                 progressBar.setVisibility(View.VISIBLE);
 
-                // Register user in the firebase
+                //authenticate the user
 
-                fAuth.createUserWithEmailAndPassword(email_input, password_input).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                fAuth.signInWithEmailAndPassword(email_input, password_input).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(RegisterActivity.this, "Successful Registration", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            Toast.makeText(LoginActivity.this, "Login Success!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), MainPageActivity.class));
                         }
                         else{
-                            Toast.makeText(RegisterActivity.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
                         }
                     }
                 });
-
             }
         });
+
+        forgetbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), ResetPasswordActivity.class));
+            }
+        });
+
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), LaunchActivity.class));
             }
         });
-
     }
+
+
+
 }

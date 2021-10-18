@@ -13,7 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.medicare.ItemAnimation;
+import com.example.medicare.clinic.ItemAnimation;
 import com.example.medicare.R;
 
 import java.util.ArrayList;

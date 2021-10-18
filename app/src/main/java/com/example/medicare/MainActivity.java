@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.medicare.login.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 

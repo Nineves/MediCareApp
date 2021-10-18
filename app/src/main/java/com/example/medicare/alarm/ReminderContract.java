@@ -1,7 +1,7 @@
 package com.example.medicare.alarm;
 
-import com.example.medicare.BasePresenter;
-import com.example.medicare.BaseView;
+import com.example.medicare.addmedicine.BasePresenter;
+import com.example.medicare.addmedicine.BaseView;
 import com.example.medicare.data.source.History;
 import com.example.medicare.data.source.MedicineAlarm;
 

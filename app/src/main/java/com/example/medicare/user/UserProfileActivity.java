@@ -1,10 +1,12 @@
-package com.example.medicare;
+package com.example.medicare.user;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.medicare.R;
 
 public class UserProfileActivity extends AppCompatActivity {
     @Override

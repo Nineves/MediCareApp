@@ -1,4 +1,4 @@
-package com.example.medicare;
+package com.example.medicare.addmedicine;
 
 public interface BaseView<T> {
 

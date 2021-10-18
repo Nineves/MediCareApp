@@ -6,8 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.example.medicare.clinic.MapsActivity;
 import com.example.medicare.medicineReminder.MedicineActivity;
 import com.example.medicare.search.MedicineSearchActivity;
+import com.example.medicare.user.UserProfileActivity;
+
 public class MainPageActivity extends AppCompatActivity {
 
     ImageView profilebtn;
@@ -50,7 +54,7 @@ public class MainPageActivity extends AppCompatActivity {
         profilebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),UserProfileActivity.class));
+                startActivity(new Intent(getApplicationContext(), UserProfileActivity.class));
             }
         });
     }

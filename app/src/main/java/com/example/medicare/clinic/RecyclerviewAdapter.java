@@ -1,4 +1,4 @@
-package com.example.medicare;
+package com.example.medicare.clinic;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,12 +8,11 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.medicare.ItemAnimation;
+import com.example.medicare.R;
 
 import java.util.ArrayList;
 import java.util.List;

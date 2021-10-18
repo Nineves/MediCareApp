@@ -1,4 +1,4 @@
-package com.example.medicare;
+package com.example.medicare.clinic;
 
 public class Rating {
     private double rating;

@@ -1,4 +1,4 @@
-package com.example.medicare;
+package com.example.medicare.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.medicare.R;
 
 public class LaunchActivity extends AppCompatActivity {
     TextView createbtn;

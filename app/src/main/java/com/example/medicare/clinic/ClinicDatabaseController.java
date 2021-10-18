@@ -1,4 +1,4 @@
-package com.example.medicare;
+package com.example.medicare.clinic;
 
 import android.content.Context;
 import android.util.Log;

@@ -1,4 +1,4 @@
-package com.example.medicare;
+package com.example.medicare.clinic;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.View;
