@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -52,7 +53,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private double latitude;
     private double longtitude;
     private EditText searchBar;
-    private String searchContent;
     LocationManager locationManager;
     KmlLayer layer;
 
@@ -120,14 +120,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(ntu).title("NTU"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ntu));
 
-        try {
-            layer = new KmlLayer(mMap, R.raw.chas_clinics_kml, getApplicationContext());
-            layer.addLayerToMap();
-        } catch (XmlPullParserException e) {
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        displayClinics();
 
         searchButton=findViewById(R.id.search_button);
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -149,6 +142,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Toast.makeText(this,"Permission denied!", Toast.LENGTH_SHORT).show();
         }
     }
+    @SuppressLint("MissingPermission")
     private void getCurrentLocation(){
         LocationRequest locationRequest= new LocationRequest();
         locationRequest.setInterval(10000);
@@ -158,6 +152,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LocationServices.getFusedLocationProviderClient(MapsActivity.this)
                 .requestLocationUpdates(locationRequest, new LocationCallback(){
 
+                    @SuppressLint("MissingPermission")
                     @Override
                     public void onLocationResult(LocationResult locationResult){
                         super.onLocationResult(locationResult);
@@ -213,5 +208,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
+    }
+
+    public void displayClinics(){
+        try {
+            layer = new KmlLayer(mMap, R.raw.chas_clinics_kml, getApplicationContext());
+            layer.addLayerToMap();
+        } catch (XmlPullParserException e) {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

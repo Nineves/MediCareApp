@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="pink">#FF9891</color>
     <color name="fontColor">#686868</color>
+    <color name="fontColor_lighter">#868585</color>
     <color name="gray">#EEF0F5</color>
     <color name="purple">#3E1FF6</color>
     <!-- Sitian's colors -->
@@ -19,5 +20,11 @@
     <color name="black_very_translucent">#85000000</color>
     <color name="blue_translucent">#99334669</color>
     <color name="transparent">#00FFFFFF</color>
-    <!---->
+    <!-- Yaxin's colors -->
+    <color name="darkblue">#334669</color>
+    <color name="colorAccent">#03a9f4</color>
+    <color name="colorPrimary">#FF9891</color>
+    <color name="colorPrimaryDark">#1976d2</color>
+    <color name="color_light_grey">#4d4d4d</color>
+    <drawable name="touchFeedback">#CFD8DC</drawable>
 </resources>

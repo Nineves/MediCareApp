@@ -139,5 +139,31 @@ public class InfoDisplay extends AppCompatActivity {
 
     }
 
+    public String getAveRating(){
+        return rating;
+    }
+    public void updateRating(String accode, double newRat){
+        String nR=Double.toString(newRat).substring(0,3);
+        ref.child(accode).child("rating").setValue(nR);
+    }
+
+    public void displayInfo(){
+        clinicName = findViewById(R.id.title_info);
+        clinicName.setText(name);
+        clinicDist = findViewById(R.id.dist);
+        clinicDist.setText(Long.toString(distance) + "km from me");
+        clinicOH = findViewById(R.id.open_hour2);
+        clinicOH.setText(opening_hours);
+        clinicRat = findViewById(R.id.rating);
+        String r=rating.substring(0,3);
+        clinicRat.setText(r);
+        clinicAdd = findViewById(R.id.full_add2);
+        clinicAdd.setText(address);
+        clinicCont = findViewById(R.id.contact_num2);
+        clinicCont.setText(contact_number);
+        clinicWebsite = findViewById(R.id.website2);
+        clinicWebsite.setText(website);
+    }
+
 
 }

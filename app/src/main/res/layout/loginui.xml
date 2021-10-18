@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/gray">
 
     <TextView
         android:id="@+id/loginwithemail_text"
@@ -13,38 +14,69 @@
         android:layout_marginTop="180dp"
         android:layout_marginEnd="95dp"
         android:text="Login with Email"
-        android:textColor="#000000"
+        android:textColor="#334669"
+        android:fontFamily="@font/lato_bold"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <soup.neumorphism.NeumorphCardView
+        style="@style/Widget.Neumorph.CardView"
+
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="80dp"
+        app:neumorph_shapeType="basin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginwithemail_text" >
+
+    </soup.neumorphism.NeumorphCardView>
+
     <EditText
         android:id="@+id/email_input1"
-        android:layout_width="255dp"
+        android:layout_width="250dp"
         android:layout_height="55dp"
         android:layout_marginStart="80dp"
         android:layout_marginTop="55dp"
         android:layout_marginEnd="80dp"
-        android:background="@drawable/round_boarder"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
         android:padding="16dp"
+        android:fontFamily="@font/lato_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginwithemail_text" />
 
+    <soup.neumorphism.NeumorphCardView
+        style="@style/Widget.Neumorph.CardView"
+
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="80dp"
+        app:neumorph_shapeType="basin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_input1" >
+
+    </soup.neumorphism.NeumorphCardView>
+
     <EditText
         android:id="@+id/password_input1"
-        android:layout_width="255dp"
+        android:layout_width="250dp"
         android:layout_height="55dp"
         android:layout_marginStart="80dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="80dp"
-        android:background="@drawable/round_boarder"
         android:ems="10"
+        android:fontFamily="@font/lato_medium"
         android:hint="Password"
         android:inputType="text|textPassword"
         android:padding="16dp"
@@ -52,25 +84,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email_input1" />
 
-    <Button
+
+
+    <soup.neumorphism.NeumorphButton
         android:id="@+id/login_button"
-        android:layout_width="160dp"
-        android:layout_height="55dp"
+        android:layout_width="250dp"
+        android:layout_height="74dp"
         android:layout_marginStart="130dp"
         android:layout_marginTop="55dp"
         android:layout_marginEnd="130dp"
         android:background="@drawable/round"
         android:text="Login"
-        android:textSize="16sp"
+        android:textColor="#334669"
+        android:gravity="center"
+        android:fontFamily="@font/lato_medium"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_input1" />
+        app:layout_constraintTop_toBottomOf="@+id/password_input1"></soup.neumorphism.NeumorphButton>
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="125dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -79,11 +116,12 @@
         app:srcCompat="@drawable/medicine" />
 
     <TextView
+        android:fontFamily="@font/lato_medium"
         android:id="@+id/forgetlink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="110dp"
         android:text="FORGET PASSWORD?"
         android:textColor="#9C27B0"
         app:layout_constraintEnd_toEndOf="@id/password_input1"
@@ -106,8 +144,8 @@
 
     <ImageView
         android:id="@+id/backbtn"
-        android:layout_width="71dp"
-        android:layout_height="52dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:visibility="visible"
