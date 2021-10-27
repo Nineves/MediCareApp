@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -38,16 +40,11 @@ public class MedicineSearchActivity extends AppCompatActivity{
     ProgressDialog progressDialog;
     ImageButton backButton;
     EditText searchBar;
-    Context context = this;
     RecyclerView.LayoutManager layoutManager;
+    TextView noResult;
 
-    String medicineURLstring = "https://data.gov.sg/api/action/datastore_search?resource_id=3ee20559-372d-42f0-bde9-245e21f7f39b&limit=5621";
-    String medicineStr;
-    JSONArray medicineRecordsjson;
     // for medicine search result, each element in list has format
     // {"name", "dosage form", "ingredients", "manufacturers"}
-    // for clinic search result, each element in list has format
-    // {"name", "clinic ave rating", "clinic distance", "clinic address"}
     List<String[]> searchResults = new ArrayList<>();
 
     @Override
@@ -61,12 +58,14 @@ public class MedicineSearchActivity extends AppCompatActivity{
         searchResultsRCView = findViewById(R.id.searchResultsRCView);
         layoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
         searchResultsRCView.setLayoutManager(layoutManager);
-        medicineRecyclerAdapter = new MedicineRecyclerAdapter(this, searchResults, true);
+        medicineRecyclerAdapter = new MedicineRecyclerAdapter(this, searchResults);
         //recyclerAdapter = new RecyclerAdapter(searchResults, false)
         searchResultsRCView.setAdapter(medicineRecyclerAdapter);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         searchResultsRCView.addItemDecoration(dividerItemDecoration);
+
+        noResult = findViewById(R.id.medicineNoResult);
 
         backButton=findViewById(R.id.backButtonSearchMedicine);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -80,16 +79,23 @@ public class MedicineSearchActivity extends AppCompatActivity{
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                noResult.setVisibility(View.INVISIBLE);
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 medicineRecyclerAdapter.getFilter().filter(charSequence);
-                //search=charSequence;
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
+                int resultsSize = medicineRecyclerAdapter.getSearchResultsSize();
+                if (resultsSize <= 0) {
+                    noResult.setVisibility(View.VISIBLE);
+                }
+                else if (resultsSize > 0) {
+                    noResult.setVisibility(View.INVISIBLE);
+                }
             }
         });
 
@@ -130,29 +136,4 @@ public class MedicineSearchActivity extends AppCompatActivity{
 
         }
     }
-
-    /*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.search_menu, menu);
-        MenuItem item = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) item.getActionView();
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                recyclerAdapter.getFilter().filter(newText);
-                return false;
-            }
-        });
-        return super.onCreateOptionsMenu(menu);
-    }
-    */
-
-
-
 }

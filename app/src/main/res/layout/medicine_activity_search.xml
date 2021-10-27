@@ -31,7 +31,8 @@
         android:paddingStart="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/searchResultsRCView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:inputType="text"/>
 
     <ImageButton
         android:id="@+id/backButtonSearchMedicine"
@@ -42,6 +43,21 @@
         android:src="@drawable/back_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/medicineNoResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_semibold"
+        android:text="Oops!\nNo results found"
+        android:textAlignment="center"
+        android:textColor="@color/darkblue"
+        android:textSize="20dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/searchResultsRCView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/searchResultsRCView"
+        app:layout_constraintTop_toTopOf="@+id/med_search_bar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

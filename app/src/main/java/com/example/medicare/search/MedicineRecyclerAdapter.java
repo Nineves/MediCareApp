@@ -1,6 +1,7 @@
 package com.example.medicare.search;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.medicare.clinic.InfoDisplay;
 import com.example.medicare.clinic.ItemAnimation;
 import com.example.medicare.R;
 
@@ -25,20 +27,14 @@ public class MedicineRecyclerAdapter extends RecyclerView.Adapter<MedicineRecycl
 
     // for medicine search result, each element in list has format
     // {"name", "dosage form", "ingredients", "manufacturers"}
-    // for clinic search result, each element in list has format
-    // {"name", "clinic ave rating", "clinic distance", "clinic address"}
-    // {"name", "clinic ave rating", "clinic distance", "clinic address"}
     List<String[]> searchResults;
     List<String[]> allResultsUnfiltered;
-    boolean medicineSearch;
     Context context;
 
-    public MedicineRecyclerAdapter(Context context, List<String[]> searchResults, boolean medicineSearch) {
+    public MedicineRecyclerAdapter(Context context, List<String[]> searchResults) {
         this.context = context;
-        this.searchResults = searchResults;
+        this.searchResults = new ArrayList<>(searchResults);
         this.allResultsUnfiltered = new ArrayList<>(searchResults);
-        this.medicineSearch = medicineSearch;
-        //Toast.makeText(this.context, "searchResults size: " + this.searchResults.size(), Toast.LENGTH_SHORT).show();
     }
 
     public int getSearchResultsSize() {
@@ -46,16 +42,10 @@ public class MedicineRecyclerAdapter extends RecyclerView.Adapter<MedicineRecycl
     }
 
     public void updateSearchResults(List<String[]> searchResults) {
-        this.searchResults = searchResults;
+        this.searchResults = new ArrayList<>(searchResults);
         //this.searchResults = new ArrayList<>(searchResults);
         //this.allResultsUnfiltered = searchResults;
         this.allResultsUnfiltered = new ArrayList<>(searchResults);
-    }
-
-    public static List<String[]> cloneList(List<String[]> list) {
-        List<String[]> clone = new ArrayList<String[]>(list.size());
-        for (String[] item : list) clone.add(item.clone());
-        return clone;
     }
 
     @NonNull
@@ -63,38 +53,31 @@ public class MedicineRecyclerAdapter extends RecyclerView.Adapter<MedicineRecycl
     //controls displaying items in RecyclerView
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View view;
-        if (medicineSearch) {
-            view = layoutInflater.inflate(R.layout.medicine_search_result_item, parent, false);
-        }
-        else {
-            view = layoutInflater.inflate(R.layout.clinic_search_result_item, parent, false);
-        }
+        View view = layoutInflater.inflate(R.layout.medicine_search_result_item, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if (medicineSearch) {
-            holder.medicineName.setText(searchResults.get(position)[0]);
-            holder.dosage.setText(searchResults.get(position)[1]);
-            holder.ingredientsList.setText(searchResults.get(position)[2]);
-            holder.medicineManufacturer.setText("Manufacturers: " + searchResults.get(position)[3]);
-        }
-        else {
-            holder.clinicName.setText(searchResults.get(position)[6]);
-            float rating=Float.parseFloat(searchResults.get(position)[8]);
-            holder.aveRating.setRating(rating);
-            holder.clinicDistance.setText(searchResults.get(position)[4]+" km");
-            holder.clinicAddress.setText(searchResults.get(position)[1]);
-        }
+
+        holder.medicineName.setText(searchResults.get(position)[0]);
+        holder.dosage.setText(searchResults.get(position)[1]);
+        holder.ingredientsList.setText(searchResults.get(position)[2]);
+        holder.medicineManufacturer.setText("Manufacturers: " + searchResults.get(position)[3]);
 
         ItemAnimation.animateFadeIn(holder.itemView, position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(context, MedicineInfoPageActivity.class);
 
+                intent.putExtra("medicineName", searchResults.get(holder.getAdapterPosition())[0]);
+                intent.putExtra("medicineDose", searchResults.get(holder.getAdapterPosition())[1]);
+                intent.putExtra("medicineIngredients", searchResults.get(holder.getAdapterPosition())[2]);
+                intent.putExtra("medicineManufacturer", searchResults.get(holder.getAdapterPosition())[3]);
+
+                context.startActivity(intent);
 
             }
         });
@@ -117,14 +100,15 @@ public class MedicineRecyclerAdapter extends RecyclerView.Adapter<MedicineRecycl
         protected FilterResults performFiltering(CharSequence charSequence) {
             List<String[]> filteredList = new ArrayList<>();
 
+            String str = charSequence.toString().replace("\n","");
             //checks if there is no search input
-            if (charSequence.toString().isEmpty()) {
+            if (str.isEmpty()) {
                 //add all entries into list
                 filteredList.addAll(allResultsUnfiltered);
             } else {
                 for (String[] searchItem: allResultsUnfiltered) {
                     for (String searchItemInfo: searchItem) {
-                        if (searchItemInfo.toLowerCase().contains(charSequence.toString().toLowerCase())) {
+                        if (searchItemInfo.toLowerCase().contains(str.toLowerCase())) {
                             filteredList.add(searchItem);
                             break;
                         }
@@ -142,36 +126,38 @@ public class MedicineRecyclerAdapter extends RecyclerView.Adapter<MedicineRecycl
             //searchResults = new ArrayList<>();
             searchResults.clear();
             searchResults.addAll((Collection<? extends String[]>) filterResults.values);
+
             notifyDataSetChanged();
         }
     };
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView medicineName, dosage, ingredientsList, medicineManufacturer;
-        TextView clinicName, clinicDistance, clinicAddress;
-        RatingBar aveRating;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            if (medicineSearch) {
-                medicineName = itemView.findViewById(R.id.medicineNameSearch);
-                dosage = itemView.findViewById(R.id.medicineDosageSearch);
-                ingredientsList = itemView.findViewById(R.id.medicineIngredientsSearch);
-                medicineManufacturer = itemView.findViewById(R.id.medicineManufacturerSearch);
-            }
-            else {
-                clinicName = itemView.findViewById(R.id.clinicNameSearch);
-                aveRating = itemView.findViewById(R.id.ratingSearch);
-                clinicDistance = itemView.findViewById(R.id.clinicDistanceSearch);
-                clinicAddress = itemView.findViewById(R.id.clinicAddressSearch);
-            }
+            medicineName = itemView.findViewById(R.id.medicineNameSearch);
+            dosage = itemView.findViewById(R.id.medicineDosageSearch);
+            ingredientsList = itemView.findViewById(R.id.medicineIngredientsSearch);
+            medicineManufacturer = itemView.findViewById(R.id.medicineManufacturerSearch);
 
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            Toast.makeText(itemView.getContext(), searchResults.get(getAdapterPosition())[0] + "  clicked!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(itemView.getContext(), searchResults.get(getAdapterPosition())[0] + "  clicked!", Toast.LENGTH_SHORT).show();
+            /*
+            Intent intent = new Intent(context, MedicineInfoPageActivity.class);
+
+            intent.putExtra("medicineName", searchResults.get(getAdapterPosition())[0]);
+            intent.putExtra("medicineManufacturer", searchResults.get(getAdapterPosition())[1]);
+            intent.putExtra("medicineIngredients", searchResults.get(getAdapterPosition())[2]);
+            intent.putExtra("medicineDose", searchResults.get(getAdapterPosition())[3]);
+
+            context.startActivity(intent);
+            */
+
         }
     }
 }

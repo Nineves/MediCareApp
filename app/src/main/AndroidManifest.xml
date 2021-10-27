@@ -56,7 +56,7 @@
             android:parentActivityName=".clinic.MapsActivity"></activity>
 
         <activity android:name=".search.MedicineSearchActivity"></activity>
-
+        <activity android:name=".search.MedicineInfoPageActivity"></activity>
         <activity
             android:name=".login.ResetPasswordActivity"
             android:exported="true" />
