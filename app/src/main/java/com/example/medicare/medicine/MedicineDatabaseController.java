@@ -40,11 +40,11 @@ public class MedicineDatabaseController {
                     for (int i = 0; i < medicineRecordsjson.length(); i++)
                     {
                         JSONObject medObj = medicineRecordsjson.getJSONObject(i);
-                        String licenseNo = medObj.getString("licence_no");
-                        String medicineName = capitalizeWord(cleanString(medObj.getString("product_name")));
-                        String dosageForm = capitalizeWord(cleanString(medObj.getString("dosage_form")));
-                        String ingredients = capitalizeWord(insertComma(cleanString(medObj.getString("active_ingredients"))));
-                        String manufacturer = capitalizeWord(insertComma(cleanString(medObj.getString("manufacturer"))));
+                        String licenseNo = noInfoFound(medObj.getString("licence_no"));
+                        String medicineName = noInfoFound(capitalizeWord(cleanString(medObj.getString("product_name"))));
+                        String dosageForm = noInfoFound(capitalizeWord(cleanString(medObj.getString("dosage_form"))));
+                        String ingredients = noInfoFound(capitalizeWord(insertComma(cleanString(medObj.getString("active_ingredients")))));
+                        String manufacturer = noInfoFound(capitalizeWord(insertComma(cleanString(medObj.getString("manufacturer")))));
 
                         Medicine medicine = new Medicine(licenseNo, medicineName, dosageForm, ingredients, manufacturer);
                         medicineData.add(medicine);
@@ -57,6 +57,13 @@ public class MedicineDatabaseController {
             }
             appOn = true;
         }
+    }
+
+    public static String noInfoFound(String info) {
+        if (info.isEmpty()) {
+            info = "No information found";
+        }
+        return info;
     }
 
     public static List<String[]> getMedicineData() {
