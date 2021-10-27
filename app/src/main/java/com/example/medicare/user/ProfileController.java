@@ -11,12 +11,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class ProfileController {
 
     private DatabaseReference databaseReference;
     private FirebaseDatabase database;
+    private static List<User> userList = new ArrayList<User>();
 
-    private boolean allowNotification;
     private boolean isLoggingOut;
     private User currentUser;
 
@@ -31,23 +36,27 @@ public class ProfileController {
 
 
 
-    public void notificationAllowance(boolean allowNotification){
-
-    }
-
     public void updateCurrentUser(User curUser){
-
-    }
-
-    public void logout(boolean isLoggingOut){
+        DatabaseReference ref=database.getReference("Users");
+        ref.child("2").child("email").setValue(curUser.getEmail());
+        ref.child("2").child("username").setValue(curUser.getUsername());
 
     }
 
     public User getCurrentUser(){
-        databaseReference = database.getReference("users");
+        databaseReference = database.getReference("Users");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String email;
+                String userName;
+                for(DataSnapshot mSnapshot:snapshot.getChildren()) {
+                    email=(String) mSnapshot.child("email").getValue();
+                    userName=(String) mSnapshot.child("username").getValue();
+                    User newUser= new User(email,userName);
+                    userList.add(newUser);
+                    Log.e("userRead","Read user successfully");
+                }
 
                 }
 
@@ -57,6 +66,7 @@ public class ProfileController {
                 Log.w("Failed to read value.", error.toException());
             }
         });
+        return userList.get(0);
     }
 
 }

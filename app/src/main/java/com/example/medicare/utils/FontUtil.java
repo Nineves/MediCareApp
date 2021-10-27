@@ -2,7 +2,7 @@ package com.example.medicare.utils;;
 
 import android.graphics.Typeface;
 
-import com.example.medicare.MedicineApp;
+import com.example.medicare.medicineReminder.MedicineApp;
 
 import java.util.Hashtable;
 

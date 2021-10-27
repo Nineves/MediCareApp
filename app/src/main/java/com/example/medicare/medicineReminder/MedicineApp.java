@@ -1,4 +1,4 @@
-package com.example.medicare;
+package com.example.medicare.medicineReminder;
 
 import android.app.Application;
 import android.content.Context;

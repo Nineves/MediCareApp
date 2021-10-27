@@ -74,6 +74,7 @@
         <activity android:name=".alarm.ReminderActivity"/>
         <activity android:name=".medicineReminder.MedicineActivity"/>
         <activity android:name=".user.UserProfileActivity"/>
+        <activity android:name=".user.EditProfileActivity"/>
 
     </application>
 
