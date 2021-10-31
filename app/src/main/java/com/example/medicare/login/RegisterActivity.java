@@ -16,9 +16,15 @@ import android.widget.Toast;
 import com.example.medicare.MainActivity;
 import com.example.medicare.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
     EditText username, email, password, passwordConfirm;
@@ -26,6 +32,8 @@ public class RegisterActivity extends AppCompatActivity {
     ImageView backbtn;
     FirebaseAuth fAuth;
     ProgressBar progressBar;
+    FirebaseFirestore fStore;
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar1);
 
         fAuth = FirebaseAuth.getInstance();
-
-        /*
-        if(fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            finish();
-        }
-        */
+        fStore = FirebaseFirestore.getInstance();
 
         registerbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +61,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if(TextUtils.isEmpty(username_input)){
                     username.setError("Username is required!");
+                    return;
                 }
 
                 if(TextUtils.isEmpty(email_input)){
@@ -78,6 +81,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if(!passwordC_input.equals(password_input)){
                     passwordConfirm.setError("Two passwords are not identical!");
+                    return;
                 }
 
                 if(password_input.length() < 6){
@@ -94,7 +98,18 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(RegisterActivity.this, "Successful Registration", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            userID = fAuth.getCurrentUser().getUid();
+                            DocumentReference documentReference = fStore.collection("users").document(userID);
+                            Map<String, Object> user = new HashMap<>();
+                            user.put("UserName", username_input);
+                            user.put("Email", email_input);
+                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    //Toast.makeText(RegisterActivity.this, "User profile created", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            startActivity(new Intent(getApplicationContext(), LaunchActivity.class));
                         }
                         else{
                             Toast.makeText(RegisterActivity.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();

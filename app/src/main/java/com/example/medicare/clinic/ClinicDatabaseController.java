@@ -27,6 +27,7 @@ public class ClinicDatabaseController {
     public ClinicDatabaseController(){
 
         database = FirebaseDatabase.getInstance("https://clinicinfo-e71e4-default-rtdb.asia-southeast1.firebasedatabase.app");
+        databaseReference = database.getReference("clinics");
     }
 
     public List<Clinic> getClinicArrayList() {
@@ -66,5 +67,10 @@ public class ClinicDatabaseController {
             }
         });
     }
+    public void updateRating(String accessCode,int count, double newRating){
+        databaseReference.child(accessCode).child("rating_count").setValue(count);
+        String nR=Double.toString(newRating).substring(0,3);
+        databaseReference.child(accessCode).child("rating").setValue(nR);
 
+    }
 }

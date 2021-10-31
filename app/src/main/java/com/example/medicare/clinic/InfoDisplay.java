@@ -114,11 +114,10 @@ public class InfoDisplay extends AppCompatActivity {
                 double r=Double.parseDouble(rating);
                 newRating=calAve(ratingCount,r,newRating);
                 ratingCount=ratingCount+1;
-                ref.child(access_code).child("rating_count").setValue(ratingCount);
+                ClinicDatabaseController controller=new ClinicDatabaseController();
+                controller.updateRating(access_code,ratingCount,newRating);
                 String nR=Double.toString(newRating).substring(0,3);
-                ref.child(access_code).child("rating").setValue(nR);
-                Log.e("Update rating","Update successfully.");
-                clinicRat.setText(nR);
+                updateRatingXML(nR);
             }
         });
 
@@ -154,6 +153,10 @@ public class InfoDisplay extends AppCompatActivity {
         clinicCont.setText(contact_number);
         clinicWebsite = findViewById(R.id.website2);
         clinicWebsite.setText(website);
+    }
+
+    public void updateRatingXML(String s){
+        clinicRat.setText(s);
     }
 
 
