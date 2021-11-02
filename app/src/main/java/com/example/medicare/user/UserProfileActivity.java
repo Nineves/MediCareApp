@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -56,11 +57,13 @@ public class UserProfileActivity extends AppCompatActivity {
         });
 
         DocumentReference documentReference = fStore.collection("users").document(userID);
-        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                userNameText.setText(value.getString("UserName"));
-                emailText.setText(value.getString("Email"));
+        documentReference.addSnapshotListener(this, (documentSnapshot, error) -> {
+            if (documentSnapshot != null) {
+                userNameText.setText(documentSnapshot.getString("UserName"));
+                emailText.setText(documentSnapshot.getString("Email"));
+            }
+            else{
+                Toast.makeText(UserProfileActivity.this, "Logging out", Toast.LENGTH_SHORT).show();
             }
         });
 
